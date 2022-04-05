@@ -37,7 +37,7 @@ List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestLi
 <body>
 おすすめユーザー<br>
 <br>
-<form action="/komimi-chan-t-1/MainProcessSwitch" method="post">
+<form action="/komimi-chan-t-1/PersonProcessSwitch" method="post">
 <input  type="submit" value="main" name="select">main<br>
 <input  type="submit" value="personMyself" name="select">personMyself<br>
 <input  type="submit" value="personOthers" name="select">personOthers<br>
