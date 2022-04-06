@@ -16,7 +16,7 @@ public class ReadDataFromCSV {
 	public static void read() {
 		  // CSVファイルを読み込み1行ずつ出力
 		  BufferedReader br = null;
-		  String file_name = "C:\\Users\\user\\Desktop\\talentdata.csv"; // 入力ファイル
+		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\talentdata.csv"; // 入力ファイル
 		  String line; // 読み込み行
 		  String[] talentAry; //8列
 		  ProcessInsert pi = new ProcessInsert();

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import dto.CommentDTO;
 import dto.LoginDTO;
@@ -39,7 +40,7 @@ public class ProcessFind implements ProcessFindInterface {
 		List<TalentDTO> talentList = new ArrayList<>();
 		DBConnector dbc = new DBConnector();
 		String sql = "SELECT * FROM talent_base_info";
-
+		Random rnd = new Random();
 		try (Connection conn = dbc.getConnection();
 			Statement stmt = conn.createStatement();) {
 			ResultSet rs = stmt.executeQuery(sql);
@@ -53,6 +54,7 @@ public class ProcessFind implements ProcessFindInterface {
             			.talentBloodType(rs.getString("talent_blood_type"))
             			.talentGroupName(rs.getString("talent_group_name"))
             			.talentInfo08(rs.getString("talent_info08"))
+            			.talentFavoriteCount(rnd.nextInt(1000))
             			.build());
             }
 		} catch (SQLException e) {

@@ -70,12 +70,14 @@ if(loginDTO==null||loginDTO.getId()==""){
 	<h1>リクエスト</h1>
 	<%= requestDTO %><br>
 	<br>
-	<img src="C:/pleiades/workspace/komimi-chan-t-1/WebContent/img/imgAkasatanaHamaya.jpg" width="150">
 	<!--タレントリスト表示 -->
 	<h1>タレントリスト</h1>
 	<%for(TalentDTO talent:talentList){ %>
-	<%= talent %><br>
-	<img src=<%= request.getContextPath() + "/img/" + talentDTO.getTalentImdAddress() %>>
+	<img src="<%= request.getContextPath()+"/img/" + talent.getTalentImdAddress() %>" width="150"><br>
+	<%= "名前："+talent.getTalentName() %><br>
+	<%= "コンビ名："+talent.getTalentGroupName() %><br>
+	<%= "お気に入り数："+talent.getTalentFavoriteCount() %>
+	<br><br>
 	<%} %>
 	<br>
 
