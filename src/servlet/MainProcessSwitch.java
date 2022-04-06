@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ProcessFind;
 import dto.CommentDTO;
 import dto.LoginDTO;
 import dto.RequestDTO;
@@ -54,10 +55,12 @@ public class MainProcessSwitch extends HttpServlet {
     		}
 
     		//TalentList
-    		for(int i=0;i<10;i++) {
-    			CreateSample createSample = new CreateSample(select);
-    			talentList.add(createSample.createTalentDTO());
-    		}
+//    		for(int i=0;i<10;i++) {
+//    			CreateSample createSample = new CreateSample(select);
+//    			talentList.add(createSample.createTalentDTO());
+//    		}
+    		ProcessFind pf = new ProcessFind();
+    		talentList=pf.findAllTalentDTOList();
 
     		//CommentList
     		for(int i=0;i<10;i++) {

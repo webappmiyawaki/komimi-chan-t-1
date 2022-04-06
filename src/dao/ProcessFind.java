@@ -1,5 +1,10 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import dto.CommentDTO;
@@ -25,13 +30,36 @@ public class ProcessFind implements ProcessFindInterface {
 	@Override
 	public List<TalentDTO> findTalentDTOList(UserDTO userDTO) {
 		// TODO 自動生成されたメソッド・スタブ
+
 		return null;
 	}
 
 	@Override
 	public List<TalentDTO> findAllTalentDTOList() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		List<TalentDTO> talentList = new ArrayList<>();
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM talent_base_info";
+
+		try (Connection conn = dbc.getConnection();
+			Statement stmt = conn.createStatement();) {
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+            	talentList.add(TalentDTO.builder()
+            			.talentId(rs.getString("talent_id"))
+            			.talentName(rs.getString("talent_name"))
+            			.talentImdAddress(rs.getString("talent_img_address"))
+            			.talentBirthPlace(rs.getString("talent_birth_place"))
+            			.talentBirthday(null)
+            			.talentBloodType(rs.getString("talent_blood_type"))
+            			.talentGroupName(rs.getString("talent_group_name"))
+            			.talentInfo08(rs.getString("talent_info08"))
+            			.build());
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return talentList;
 	}
 
 	@Override

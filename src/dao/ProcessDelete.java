@@ -18,8 +18,8 @@ public class ProcessDelete implements ProcessDeleteInterface {
 		String sqlToTable2 = "DELETE FROM table2 WHERE user_id=?";
 
 		try (Connection conn = dbc.getConnection();
-				PreparedStatement pstmToTable1 = conn.prepareStatement(sql);
-				PreparedStatement pstmToTable2 = conn.prepareStatement(sql)) {
+				PreparedStatement pstmToTable1 = conn.prepareStatement(sqlToTable1);
+				PreparedStatement pstmToTable2 = conn.prepareStatement(sqlToTable2)) {
 			pstmToTable1.setString(1, userDTO.getName());
 			pstmToTable1.executeUpdate();
 			pstmToTable2.setString(1, userDTO.getName());
