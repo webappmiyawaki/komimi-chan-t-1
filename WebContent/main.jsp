@@ -70,6 +70,20 @@ if(loginDTO==null||loginDTO.getId()==""){
 	<h1>リクエスト</h1>
 	<%= requestDTO %><br>
 	<br>
+
+	<!--タレントリスト表示 -->
+	<h1>タレントリスト</h1>
+	<%for(int i=0;i<4;i++){ %>
+	<img src="<%= request.getContextPath()+"/img/" + talentList.get(i).getTalentImdAddress() %>" width="150"><br>
+	<%= "名前："+talentList.get(i).getTalentName() %><br>
+	<%= "コンビ名："+talentList.get(i).getTalentGroupName() %><br>
+	<%= "お気に入り数："+talentList.get(i).getTalentFavoriteCount() %>
+	<br><br>
+	<%} %>
+	<br>
+
+
+
 	<!--タレントリスト表示 -->
 	<h1>タレントリスト</h1>
 	<%for(TalentDTO talent:talentList){ %>

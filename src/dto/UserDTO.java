@@ -14,13 +14,13 @@ import lombok.ToString;
 @ToString
 @Builder
 public class UserDTO {
-	String name;
-	String info01;
-	String info02;
+	String userId;
+	String userName;
+	String userPass;
 	String info03;
-	String info04;
-	String info05;
-	String info06;
-	String info07;
-	String info08;
+	String userLikeTalent01;
+	String userLikeTalent02;
+	String userLikeTalent03;
+	String userLikeTalent04;
+	String userLikeTalent05;
 }

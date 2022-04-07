@@ -35,13 +35,21 @@ public class CreateSample {
 				.name(this.name+num)
 				.info01(null)
 				.info02(null)
-				.info03(null)
-				.info04(null)
-				.info05(null)
-				.info06(null)
 				.info07(null)
 				.info08(null)
 				.build();
+
+		User(){
+			User info01() {
+
+				return this;
+			}
+			User info02() {
+				return this;
+			}
+
+
+		}
 	}
 
 	public CommentDTO createCommentDTO() {
