@@ -39,6 +39,7 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 <input  type="submit" value="talentInfo" name="select">talentInfo<br>
 </form>
 <br>
+
 <%
 if(loginDTO==null||loginDTO.getId()==""){
 %>

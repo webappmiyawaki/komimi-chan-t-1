@@ -31,12 +31,6 @@ CREATE TABLE user_request(
     request_text VARCHAR(100)
 );
 
-CREATE TABLE comment(
-    user_id VARCHAR(100),
-    talent_id VARCHAR(100),
-    comment_text VARCHAR(100)
-);
-
 CREATE TABLE talent_base_info(
     talent_id VARCHAR(100),
     talent_name VARCHAR(100),
@@ -46,6 +40,8 @@ CREATE TABLE talent_base_info(
     talent_blood_type VARCHAR(100),
     talent_group_name VARCHAR(100),
     talent_info08 VARCHAR(100)
+   	twitter VARCHAR(100),
+	youtube VARCHAR(100),
 );
 
 CREATE TABLE talent_live_info(
