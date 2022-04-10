@@ -8,6 +8,8 @@ import="dto.TalentDTO"
 import="dto.UserDTO"
 import="dto.CommentDTO"
 import="dto.RequestDTO"
+import="dto.ProductDTO"
+import="dto.HistoryDTO"
 import="java.util.List"
 %>
 
@@ -23,6 +25,9 @@ List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList")
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
 List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestList");
+List<ProductDTO> productList = (List<ProductDTO>)session.getAttribute("productList");
+List<HistoryDTO> historyList = (List<HistoryDTO>)session.getAttribute("historyList");
+
 %>
 
 <!DOCTYPE html>
@@ -35,16 +40,12 @@ List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestLi
 <title>PersonOthers</title>
 </head>
 <body>
+<a href="/komimi-chan-t-1/PersonMyself">マイページ</a><br>
+<a href="/komimi-chan-t-1/Main">戻る</a>
 おすすめユーザー<br>
 <br>
 <form action="/komimi-chan-t-1/PersonOthersProcessSwitch" method="post">
-<input  type="submit" value="main" name="select">main<br>
-<input  type="submit" value="personMyself" name="select">personMyself<br>
-<input  type="submit" value="personOthers" name="select">personOthers<br>
-<input  type="submit" value="management" name="select">management<br>
-<input  type="submit" value="signup" name="select">signup<br>
 <input  type="submit" value="talentInfo" name="select">talentInfo<br>
-<input  type="submit" value="reset" name="select">reset
 </form>
 <br>
 <%

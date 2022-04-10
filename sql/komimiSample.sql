@@ -8,6 +8,8 @@ DROP TABLE user_info;
 DROP TABLE user_base_info;
 DROP TABLE user_favorite;
 DROP TABLE user_request;
+DROP TABLE user_purchase_history;
+DROP TABLE product_by_talent;
 
 
 CREATE TABLE user_base_info(
@@ -55,5 +57,31 @@ CREATE TABLE talent_live_info(
   talent_live_info05 VARCHAR(100)
 );
 
+CREATE TABLE product_by_talent(
+    product_id VARCHAR(100),
+    talent_id VARCHAR(100),
+    product_type VARCHAR(100),
+    product_name VARCHAR(100),
+    product_price INTEGER,
+    registration_date DATE
+);
+
+CREATE TABLE user_purchase_history(
+    history_no SERIAL,
+    user_id VARCHAR(100),
+    product_id VARCHAR(100),
+    registration_date DATE
+);
+
+
 SELECT * FROM talent_base_info;
 TRUNCATE talent_base_info;
+
+INSERT INTO user_purchase_history(user_id,product_id,registration_date) VALUES(1,1,NULL);
+INSERT INTO user_purchase_history(user_id,product_id,registration_date) VALUES(1,2,NULL);
+INSERT INTO user_purchase_history(user_id,product_id,registration_date) VALUES(1,3,NULL);
+INSERT INTO user_purchase_history(user_id,product_id,registration_date) VALUES(1,4,NULL);
+INSERT INTO user_purchase_history(user_id,product_id,registration_date) VALUES(1,5,NULL);
+
+SELECT * FROM user_purchase_history;
+TRUNCATE user_purchase_history;

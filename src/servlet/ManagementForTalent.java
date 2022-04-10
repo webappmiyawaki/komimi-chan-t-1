@@ -8,13 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Management")
-public class Management extends HttpServlet {
+
+@WebServlet("/ManagementForTalent")
+public class ManagementForTalent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "management.jsp";
-        response.sendRedirect(path);
-//		request.getRequestDispatcher(path).forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = "/WEB-INF/jsp/managementForTalent.jsp";
+//      response.sendRedirect(path);
+		request.getRequestDispatcher(path).forward(request, response);
 	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
 }

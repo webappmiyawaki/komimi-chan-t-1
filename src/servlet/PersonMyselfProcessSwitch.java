@@ -16,7 +16,6 @@ import dto.LoginDTO;
 import dto.RequestDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
-import sample.CreateSample;
 
 
 @WebServlet("/PersonMyselfProcessSwitch")
@@ -35,53 +34,6 @@ public class PersonMyselfProcessSwitch extends HttpServlet {
 		List<CommentDTO> commentList = new ArrayList<>();
 		List<RequestDTO> requestList = new ArrayList<>();
         boolean isSampleMaker = true;
-        if(isSampleMaker) {
-
-    		//DTO作成用
-        	if(true) {
-	        	//LoginDTO
-	    		CreateSample createSample = new CreateSample(select);
-	    		loginDTO = createSample.createLoginDTO();
-	    		userDTO = createSample.createUserDTO();
-	    		talentDTO = createSample.createTalentDTO();
-	    		commentDTO = createSample.createCommentDTO();
-	    		requestDTO = createSample.createRequestDTO();
-    		}
-
-    		//UserList
-    		for(int i=0;i<10;i++) {
-    			CreateSample createSample = new CreateSample(select);
-    			userList.add(createSample.createUserDTO());
-    		}
-
-    		//TalentList
-    		for(int i=0;i<10;i++) {
-    			CreateSample createSample = new CreateSample(select);
-    			talentList.add(createSample.createTalentDTO());
-    		}
-
-    		//CommentList
-    		for(int i=0;i<10;i++) {
-    			CreateSample createSample = new CreateSample(select);
-    			commentList.add(createSample.createCommentDTO());
-    		}
-
-    		//RequestList
-    		for(int i=0;i<10;i++) {
-    			CreateSample createSample = new CreateSample(select);
-    			requestList.add(createSample.createRequestDTO());
-    		}
-        }
-
-        session.setAttribute("login", loginDTO);
-        session.setAttribute("userDTO", userDTO);
-        session.setAttribute("talentDTO", talentDTO);
-        session.setAttribute("commentDTO", commentDTO);
-        session.setAttribute("requestDTO", requestDTO);
-        session.setAttribute("userList", userList);
-        session.setAttribute("talentList", talentList);
-        session.setAttribute("commentList", commentList);
-        session.setAttribute("requestList", requestList);
 
         String path= "";
         switch(select) {
@@ -94,17 +46,11 @@ public class PersonMyselfProcessSwitch extends HttpServlet {
         	case "personOthers":
         		path="/PersonOthers";
         		break;
-        	case "management":
-        		path="/Management";
-        		break;
-        	case "signup":
-        		path="/Signup";
+        	case "personMyselfPurchaseHistory":
+        		path="/PersonMyselfPurchaseHistory";
         		break;
         	case "talentInfo":
         		path="/TalentInfo";
-        		break;
-        	case "reset":
-        		path="/Reset";
         		break;
         }
         request.getRequestDispatcher(path).forward(request, response);

@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.CommentDTO;
+import dto.HistoryDTO;
 import dto.LoginDTO;
+import dto.ProductDTO;
 import dto.RequestDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
@@ -33,6 +35,8 @@ public class SampleProcessSwitch extends HttpServlet {
 		List<TalentDTO> talentList = new ArrayList<>();
 		List<CommentDTO> commentList = new ArrayList<>();
 		List<RequestDTO> requestList = new ArrayList<>();
+		List<ProductDTO> productList = new ArrayList<>();
+		List<HistoryDTO> historyList = new ArrayList<>();
         boolean isSampleMaker = true;
         if(isSampleMaker) {
 
@@ -81,6 +85,8 @@ public class SampleProcessSwitch extends HttpServlet {
         session.setAttribute("talentList", talentList);
         session.setAttribute("commentList", commentList);
         session.setAttribute("requestList", requestList);
+        session.setAttribute("productList", productList);
+        session.setAttribute("historyList", historyList);
 
         String path= "";
         switch(select) {
