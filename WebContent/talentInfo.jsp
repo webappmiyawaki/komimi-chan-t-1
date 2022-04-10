@@ -7,7 +7,6 @@ import="dto.LoginDTO"
 import="dto.TalentDTO"
 import="dto.UserDTO"
 import="dto.CommentDTO"
-import="dto.RequestDTO"
 import="java.util.List"
 %>
 
@@ -18,11 +17,8 @@ LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
 CommentDTO commentDTO = (CommentDTO)session.getAttribute("commentDTO");
-RequestDTO requestDTO = (RequestDTO)session.getAttribute("requestDTO");
-List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
-List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestList");
 %>
 
 <!DOCTYPE html>
@@ -35,16 +31,13 @@ List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestLi
 <title>Talent Infomation</title>
 </head>
 <body>
+<a href="/komimi-chan-t-1/Main">メイン</a><br>
+<a href="/komimi-chan-t-1/PersonMyself">マイページ</a><br>
 有名人情報<br>
 <br>
 <form action="/komimi-chan-t-1/TalentInfoProcessSwitch" method="post">
-<input  type="submit" value="main" name="select">main<br>
-<input  type="submit" value="personMyself" name="select">personMyself<br>
+<input  type="submit" value="purchasingPageForEach" name="select">芸能人個別購買ページ<br>
 <input  type="submit" value="personOthers" name="select">personOthers<br>
-<input  type="submit" value="management" name="select">management<br>
-<input  type="submit" value="signup" name="select">signup<br>
-<input  type="submit" value="talentInfo" name="select">talentInfo<br>
-<input  type="submit" value="reset" name="select">reset
 </form>
 <br>
 <%
@@ -69,17 +62,6 @@ if(loginDTO==null||loginDTO.getId()==""){
 	<%= commentDTO %><br>
 	<br>
 
-	<h1>リクエスト</h1>
-	<%= requestDTO %><br>
-	<br>
-
-	<!--タレントリスト表示 -->
-	<h1>タレントリスト</h1>
-	<%for(TalentDTO talent:talentList){ %>
-	<%= talent %><br>
-	<%} %>
-	<br>
-
 	<!--ユーザーリスト表示 -->
 	<h1>ユーザーリスト</h1>
 	<%for(UserDTO user:userList){ %>
@@ -94,12 +76,6 @@ if(loginDTO==null||loginDTO.getId()==""){
 	<%} %>
 	<br>
 
-	<!--リクエストリスト表示 -->
-	<h1>リクエストリスト</h1>
-	<%for(RequestDTO requestUnit:requestList){ %>
-	<%= requestUnit %><br>
-	<%} %>
-	<br>
 <%} %>
 </body>
 </html>

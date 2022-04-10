@@ -23,6 +23,7 @@ import sample.CreateSample;
 public class MainProcessSwitch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String select = request.getParameter("select");
 		HttpSession session = request.getSession();
 		LoginDTO loginDTO = new LoginDTO();
@@ -96,8 +97,11 @@ public class MainProcessSwitch extends HttpServlet {
         	case "personOthers":
         		path="/PersonOthers";
         		break;
-        	case "management":
-        		path="/Management";
+        	case "managementForOperation":
+        		path="/WEB-INF/jsp/ManagementForOperation";
+        		break;
+        	case "managementForTalent":
+        		path="/WEB-INF/jsp/ManagementForTalent";
         		break;
         	case "signup":
         		path="/Signup";
@@ -107,6 +111,9 @@ public class MainProcessSwitch extends HttpServlet {
         		break;
         	case "reset":
         		path="/Reset";
+        		break;
+        	default:
+        		path="/Main";
         		break;
         }
         request.getRequestDispatcher(path).forward(request, response);

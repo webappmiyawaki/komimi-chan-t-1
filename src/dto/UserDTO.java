@@ -1,5 +1,7 @@
 package dto;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,14 +15,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-public class UserDTO {
-	String userId;
-	String userName;
-	String userPass;
-	String info03;
-	String userLikeTalent01;
-	String userLikeTalent02;
-	String userLikeTalent03;
-	String userLikeTalent04;
-	String userLikeTalent05;
+public class UserDTO implements Serializable{
+	private String userId;
+	private String userName;
+	private String userPass;
+	private String info03;
+	private String userLikeTalent01;
+	private String userLikeTalent02;
+	private String userLikeTalent03;
+	private String userLikeTalent04;
+	private String userLikeTalent05;
 }

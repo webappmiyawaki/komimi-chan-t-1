@@ -94,17 +94,8 @@ public class TalentInfoProcessSwitch extends HttpServlet {
         	case "personOthers":
         		path="/PersonOthers";
         		break;
-        	case "management":
-        		path="/Management";
-        		break;
-        	case "signup":
-        		path="/Signup";
-        		break;
-        	case "talentInfo":
-        		path="/TalentInfo";
-        		break;
-        	case "reset":
-        		path="/Reset";
+        	case "purchasingPageForEach":
+        		path="/PurchasingPageForEach";
         		break;
         }
         request.getRequestDispatcher(path).forward(request, response);

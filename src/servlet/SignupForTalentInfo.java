@@ -8,13 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Signup")
-public class Signup extends HttpServlet {
+@WebServlet("/SignupForTalentInfo")
+public class SignupForTalentInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = "signupForTalentInfo.jsp";
+//        response.sendRedirect(path);
+		request.getRequestDispatcher(path).forward(request, response);
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "signup.jsp";
-        response.sendRedirect(path);
-//		request.getRequestDispatcher(path).forward(request, response);
+		doGet(request, response);
 	}
 }

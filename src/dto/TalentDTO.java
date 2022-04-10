@@ -31,4 +31,11 @@ public class TalentDTO implements Serializable{
 	private String talentLiveInf03;
 	private String talentLiveInf04;
 	private String talentLiveInf05;
+	private ProductDTO product01;
+	private ProductDTO product02;
+	private ProductDTO product03;
+	private ProductDTO product04;
+	private ProductDTO product05;
+
+
 }
