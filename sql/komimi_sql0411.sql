@@ -1,19 +1,14 @@
 create database komimi_chan_t_1;
 
-create table product_by_talent
+create table user_base_info
 (
-    product_id        varchar(100) not null
-        constraint product_by_talent_pk
+    user_id       varchar(100) not null
+        constraint user_base_info_pk
             primary key,
-    talent_id         varchar(100)
-        constraint product_by_talent_talent_base_info_talent_id_fk
-            references talent_base_info
-            on update cascade on delete cascade
-            deferrable,
-    product_type      varchar(100),
-    product_name      varchar(100),
-    product_price     integer,
-    registration_date date
+    user_name     varchar(100),
+    user_password varchar(100),
+    img_address   varchar(100),
+    user_type	varchar(100)
 );
 
 create table talent_base_info
@@ -48,16 +43,6 @@ create table talent_live_info
     talent_live_info05 varchar(100)
 );
 
-create table user_base_info
-(
-    user_id       varchar(100) not null
-        constraint user_base_info_pk
-            primary key,
-    user_name     varchar(100),
-    user_password varchar(100),
-    img_address   varchar(100)
-);
-
 create table user_favorite
 (
     user_id      varchar(100)
@@ -69,6 +54,22 @@ create table user_favorite
             references talent_base_info
             on update cascade on delete cascade,
     user_comment varchar(100)
+);
+
+create table product_by_talent
+(
+    product_id        varchar(100) not null
+        constraint product_by_talent_pk
+            primary key,
+    talent_id         varchar(100)
+        constraint product_by_talent_talent_base_info_talent_id_fk
+            references talent_base_info
+            on update cascade on delete cascade
+            deferrable,
+    product_type      varchar(100),
+    product_name      varchar(100),
+    product_price     integer,
+    registration_date date
 );
 
 create table user_purchase_history
@@ -98,3 +99,7 @@ create table user_request
             on update cascade on delete cascade,
     request_text varchar(100)
 );
+
+INSERT INTO user_base_info VALUES('test','test','test','testlink','GENERAL');
+INSERT INTO user_base_info VALUES('admin','admin','admin','testlink','OPERATION_MANAGER');
+INSERT INTO user_base_info VALUES('tadmin','tadmin','tadmin','testlink','TALENT_MANAGER');

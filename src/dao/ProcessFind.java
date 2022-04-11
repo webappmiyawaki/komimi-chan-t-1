@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,8 +14,30 @@ import dto.LoginDTO;
 import dto.RequestDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
+import dto.UserType;
 
 public class ProcessFind implements ProcessFindInterface {
+
+	@Override
+	public LoginDTO findUserType(LoginDTO loginDTO) {
+		// TODO 自動生成されたメソッド・スタブ
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM user_base_info WHERE user_id LIKE ? AND user_password LIKE ?";
+		Random rnd = new Random();
+		try (Connection conn = dbc.getConnection();
+				PreparedStatement pstm = conn.prepareStatement(sql)) {
+			pstm.setString(1, loginDTO.getId());
+			pstm.setString(2, loginDTO.getPassword());
+			ResultSet rs = pstm.executeQuery();
+			rs.next();
+			String userType = rs.getString("user_type");
+			loginDTO.setUserType(UserType.valueOf(userType.toUpperCase()));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return loginDTO;
+	}
 
 	@Override
 	public UserDTO findPersonMyself(LoginDTO loginDTO) {
@@ -55,6 +78,9 @@ public class ProcessFind implements ProcessFindInterface {
             			.talentGroupName(rs.getString("talent_group_name"))
             			.talentInfo08(rs.getString("talent_info08"))
             			.talentFavoriteCount(rnd.nextInt(1000))
+            			.twitterAddress(rs.getString("twitter_address"))
+            			.youtubeAddress(rs.getString("youtube_address"))
+            			.tiktokAddress(rs.getString("tiktok_address"))
             			.build());
             }
 		} catch (SQLException e) {

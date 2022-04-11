@@ -14,7 +14,7 @@ import dto.UserDTO;
 public class ProcessInsert implements ProcessInsertInterface {
 
 	@Override
-	public boolean InsertUserDTO(UserDTO userDTO) {
+	public boolean insertUserDTO(UserDTO userDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
 		String sql = "INSERT INTO user_base_info(user_id,user_name,user_password,img_address) VALUES (?, ?, ?, ?)";
@@ -24,6 +24,7 @@ public class ProcessInsert implements ProcessInsertInterface {
 			pstm.setString(2, userDTO.getUserName());
 			pstm.setString(3, userDTO.getUserPass());
 			pstm.setString(4, userDTO.getInfo03());
+			pstm.setString(5, userDTO.getUser_type().name().toLowerCase());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -33,7 +34,7 @@ public class ProcessInsert implements ProcessInsertInterface {
 	}
 
 	@Override
-	public boolean InsertTalentDTO(TalentDTO talentDTO) {
+	public boolean insertTalentDTO(TalentDTO talentDTO) {
 		DBConnector dbc = new DBConnector();
 		String sql = "INSERT INTO talent_base_info VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = dbc.getConnection();
@@ -58,7 +59,28 @@ public class ProcessInsert implements ProcessInsertInterface {
 	}
 
 	@Override
-	public boolean InsertRequestDTO(RequestDTO requestDTO) {
+	public boolean insertTalentDTO2Live(TalentDTO talentDTO) {
+		DBConnector dbc = new DBConnector();
+		String sql = "INSERT INTO talent_live_info VALUES (?, ?, ?, ?, ?, ?)";
+		try (Connection conn = dbc.getConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql)) {
+			pstm.setString(1, talentDTO.getTalentId());
+			pstm.setString(2, talentDTO.getTalentLiveInf01());
+			pstm.setString(3, talentDTO.getTalentLiveInf02());
+			pstm.setString(4, talentDTO.getTalentLiveInf03());
+			pstm.setString(5, talentDTO.getTalentLiveInf04());
+			pstm.setString(6, talentDTO.getTalentLiveInf05());
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+
+	@Override
+	public boolean insertRequestDTO(RequestDTO requestDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
 		String sql = "INSERT INTO user_request(user_id,request_text) VALUES (?, ?)";
@@ -75,7 +97,7 @@ public class ProcessInsert implements ProcessInsertInterface {
 	}
 
 	@Override
-	public boolean InsertCommentDTO(CommentDTO commentDTO) {
+	public boolean insertCommentDTO(CommentDTO commentDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
 		String sql = "INSERT INTO user_favorite(user_id,talent_id,user_comment) VALUES (?, ?, ?)";
@@ -93,7 +115,7 @@ public class ProcessInsert implements ProcessInsertInterface {
 	}
 
 	@Override
-	public boolean InsertProductDTO(ProductDTO productDTO) {
+	public boolean insertProductDTO(ProductDTO productDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
 		String sql = "INSERT INTO product_by_talent(product_id,talent_id,product_type,product_name,product_price,registration_date) VALUES (?, ?, ?, ?, ?, ?)";
@@ -114,7 +136,7 @@ public class ProcessInsert implements ProcessInsertInterface {
 	}
 
 	@Override
-	public boolean InsertHistoryDTO(HistoryDTO historyDTO) {
+	public boolean insertHistoryDTO(HistoryDTO historyDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
 		String sql = "INSERT INTO user_purchase_history(user_id, product_id, registration_data) VALUES (?, ?, ?)";

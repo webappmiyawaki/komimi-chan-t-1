@@ -13,40 +13,42 @@ public interface ProcessInsertInterface {
 	 * @param userDTO
 	 * @return boolean
 	 */
-	boolean InsertUserDTO(UserDTO userDTO);
+	boolean insertUserDTO(UserDTO userDTO);
 
 	/**
 	 * タレント情報追加用
 	 * @param talentDTO
 	 * @return boolean
 	 */
-	boolean InsertTalentDTO(TalentDTO talentDTO);
+	boolean insertTalentDTO(TalentDTO talentDTO);
+
+	public boolean insertTalentDTO2Live(TalentDTO talentDTO);
 
 	/**
 	 * リクエストデータ追加用
 	 * @param requestDTO
 	 * @return boolean
 	 */
-	boolean InsertRequestDTO(RequestDTO requestDTO);
+	boolean insertRequestDTO(RequestDTO requestDTO);
 
 	/**
 	 * コメントデータ追加用
 	 * @param commentDTO
 	 * @return boolean
 	 */
-	boolean InsertCommentDTO(CommentDTO commentDTO);
+	boolean insertCommentDTO(CommentDTO commentDTO);
 
 	/**
 	 * 商品データ追加用
 	 * @param ProductDTO
 	 * @return boolean
 	 */
-	boolean InsertProductDTO(ProductDTO ProductDTO);
+	boolean insertProductDTO(ProductDTO ProductDTO);
 
 	/**
 	 * 商品データ追加用
 	 * @param ProductDTO
 	 * @return boolean
 	 */
-	boolean InsertHistoryDTO(HistoryDTO historyDTO);
+	boolean insertHistoryDTO(HistoryDTO historyDTO);
 }

@@ -9,6 +9,15 @@ import dto.TalentDTO;
 import dto.UserDTO;
 
 public interface ProcessFindInterface {
+
+	/**
+	 * 自分のユーザー情報取得
+	 * マイページ用
+	 * @param loginDTO
+	 * @return LoginDTO or null
+	 */
+	LoginDTO findUserType(LoginDTO loginDTO);
+
 	/**
 	 * 自分のユーザー情報取得
 	 * マイページ用
@@ -41,7 +50,7 @@ public interface ProcessFindInterface {
 	 */
 	List<TalentDTO> findAllTalentDTOList();
 
-	
+
 	/**
 	 * コメントリスト取得
 	 * マイページ、似ているユーザーページ用
@@ -49,7 +58,7 @@ public interface ProcessFindInterface {
 	 * @return List<CommentDTO> or null
 	 */
 	List<CommentDTO> findCommentDTOList(UserDTO userDTO);
-	
+
 	/**
 	 * 登録されているすべてのタレント取得
 	 * 管理ページ用

@@ -31,7 +31,7 @@ List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList")
 <!--タレントリスト表示 -->
 <h1>タレントリスト</h1>
 <%for(TalentDTO talent:talentList){ %>
-<img src="<%= request.getContextPath()+"/img/" + talent.getTalentImdAddress() %>" width="150"><br>
+<img src="<%= request.getContextPath()+"/img/" + talent.getTalentImgAddress() %>" width="150"><br>
 <%= "名前："+talent.getTalentName() %><br>
 <%= "コンビ名："+talent.getTalentGroupName() %><br>
 <%= "お気に入り数："+talent.getTalentFavoriteCount() %>

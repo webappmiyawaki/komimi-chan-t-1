@@ -27,32 +27,52 @@ public class Login extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		LoginDTO loginDTO = LoginDTO.builder()
-				.id("userId")
-				.password("userPass")
+				.id(userId)
+				.password(userPass)
 				.build();
 
 		List<TalentDTO> talentList = new ArrayList<>();
 
 		UserDTO userDTO = new UserDTO();
 		LoginCheck loginCheck = new LoginCheck();
-		boolean isLoginDTO = loginCheck.isLoginDTO(loginDTO);
+		loginDTO = loginCheck.isLoginDTO(loginDTO);
 
 		String path="";
-		if(isLoginDTO) {
-			path= "/MainProcessSwitch";
-			session.setAttribute("login", loginDTO);
-	        session.setAttribute("talentList", talentList);
-	        request.getRequestDispatcher(path).forward(request, response);
-        }else {
+		if(loginDTO!=null) {
+			switch(loginDTO.getUserType()) {
+			case GENERAL:
+				path= "/MainProcessSwitch";
+				break;
+			case TALENT_MANAGER:
+				path= "/ManagementForTalent";
+				break;
+			case OPERATION_MANAGER:
+				path= "/ManagementForOperation";
+				break;
+			}
+		}else {
         	path= "login.jsp";
-        	loginDTO = LoginDTO.builder()
-    				.id(null)
-    				.password(null)
-    				.build();
-        	session.setAttribute("login", loginDTO);
-	        session.setAttribute("talentList", null);
-			response.sendRedirect(path);
-        }
+        	loginDTO = LoginDTO.builder().build();
+        	talentList=null;
+//			response.sendRedirect(path);
+		}
+		session.setAttribute("login", loginDTO);
+        session.setAttribute("talentList", talentList);
+		request.getRequestDispatcher(path).forward(request, response);
+
+
+//		if(loginDTO.getUserType()!=null) {
+//			path= "/MainProcessSwitch";
+//			session.setAttribute("login", loginDTO);
+//	        session.setAttribute("talentList", talentList);
+//	        request.getRequestDispatcher(path).forward(request, response);
+//        }else {
+//        	path= "login.jsp";
+//        	loginDTO = LoginDTO.builder().build();
+//        	session.setAttribute("login", loginDTO);
+//	        session.setAttribute("talentList", null);
+//			response.sendRedirect(path);
+//        }
 
 
 	}
