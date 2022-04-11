@@ -17,7 +17,8 @@ import lombok.ToString;
 @ToString
 @Builder
 public class HistoryDTO implements Serializable {
+	private String historyNo;
 	private String userId;
-	private ProductDTO product;
+	private String productId;
 	private Date registrationDate;
 }

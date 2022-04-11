@@ -33,7 +33,7 @@ if(loginDTO!=null){
 <%	}
 }
 %>
-登録してない方は＞＞<a href="signup.jsp">新規登録</a><br>
+登録してない方は＞＞<a href="/komimi-chan-t-1/SignupForUserInfo">新規登録</a><br>
 
 <form action="/komimi-chan-t-1/ManagementForTalent" method="post">
 <input  type="submit" value="managementForTalent" name="select">タレント用管理画面<br>

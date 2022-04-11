@@ -13,7 +13,7 @@ public class SignupForTalentInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "signupForTalentInfo.jsp";
+		String path = "WEB-INF/jsp/signupForTalentInfo.jsp";
 //        response.sendRedirect(path);
 		request.getRequestDispatcher(path).forward(request, response);
 	}

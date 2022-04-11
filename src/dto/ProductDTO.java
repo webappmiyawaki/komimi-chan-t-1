@@ -19,6 +19,7 @@ import lombok.ToString;
 
 public class ProductDTO implements Serializable {
 	private String productId;
+	private String talentId;
 	private String productType;
 	private String productName;
 	private int productPrice;

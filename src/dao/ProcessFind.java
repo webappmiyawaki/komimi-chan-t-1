@@ -48,7 +48,7 @@ public class ProcessFind implements ProcessFindInterface {
             	talentList.add(TalentDTO.builder()
             			.talentId(rs.getString("talent_id"))
             			.talentName(rs.getString("talent_name"))
-            			.talentImdAddress(rs.getString("talent_img_address"))
+            			.talentImgAddress(rs.getString("talent_img_address"))
             			.talentBirthPlace(rs.getString("talent_birth_place"))
             			.talentBirthday(null)
             			.talentBloodType(rs.getString("talent_blood_type"))

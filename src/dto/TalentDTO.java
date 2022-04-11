@@ -19,12 +19,15 @@ import lombok.ToString;
 public class TalentDTO implements Serializable{
 	private String talentId;
 	private String talentName;
-	private String talentImdAddress;
+	private String talentImgAddress;
 	private String talentBirthPlace;
 	private Date talentBirthday;
 	private String talentBloodType;
 	private String talentGroupName;
 	private String talentInfo08;
+	private String twitterAddress;
+	private String youtubeAddress;
+	private String tiktokAddress;
 	private int talentFavoriteCount;
 	private String talentLiveInf01;
 	private String talentLiveInf02;

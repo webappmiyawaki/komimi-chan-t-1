@@ -29,7 +29,8 @@ create table talent_base_info
     talent_group_name  varchar(100),
     talent_info08      varchar(100),
     twitter_address    varchar(100),
-    youtube_address    varchar(100)
+    youtube_address    varchar(100),
+    tiktok_address	varchar(100)
 );
 
 create table talent_live_info

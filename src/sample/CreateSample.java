@@ -45,8 +45,7 @@ public class CreateSample {
 	public RequestDTO createRequestDTO() {
 		return RequestDTO.builder()
 				.userId(this.name+num)
-				.talentId(null)
-				.request(null)
+				.requestText(null)
 				.build();
 	}
 }
