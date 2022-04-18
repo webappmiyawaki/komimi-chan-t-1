@@ -27,39 +27,11 @@ public class MainProcessSwitch extends HttpServlet {
 		List<UserDTO> userList = new ArrayList<>();
 		List<TalentDTO> talentList = new ArrayList<>();
 		List<CommentDTO> commentList = new ArrayList<>();
-        boolean isSampleMaker = true;
-        if(isSampleMaker) {
+		ProcessFind pf = new ProcessFind();
+		talentList=pf.findAllTalentDTOList();
+		userList=pf.findAllPersonOthersList();
 
-    		//DTO作成用
-//        	if(true) {
-//	        	//LoginDTO
-//	    		CreateSample createSample = new CreateSample(select);
-//	    		commentDTO = createSample.createCommentDTO();
-//    		}
-
-    		//UserList
-//    		for(int i=0;i<10;i++) {
-//    			CreateSample createSample = new CreateSample(select);
-//    			userList.add(createSample.createUserDTO());
-//    		}
-
-    		//TalentList
-//    		for(int i=0;i<10;i++) {
-//    			CreateSample createSample = new CreateSample(select);
-//    			talentList.add(createSample.createTalentDTO());
-//    		}
-    		ProcessFind pf = new ProcessFind();
-    		talentList=pf.findAllTalentDTOList();
-    		userList=pf.findAllPersonOthersList();
-    		//CommentList
-//    		for(int i=0;i<10;i++) {
-//    			CreateSample createSample = new CreateSample(select);
-//    			commentList.add(createSample.createCommentDTO());
-//    		}
-
-    		commentList=pf.findAllCommentDTOList();
-
-        }
+		commentList=pf.findAllCommentDTOList();
 
         session.setAttribute("commentDTO", commentDTO);
         session.setAttribute("userList", userList);

@@ -64,21 +64,6 @@ public class Login extends HttpServlet {
         session.setAttribute("talentList", talentList);
 		request.getRequestDispatcher(path).forward(request, response);
 
-
-//		if(loginDTO.getUserType()!=null) {
-//			path= "/MainProcessSwitch";
-//			session.setAttribute("login", loginDTO);
-//	        session.setAttribute("talentList", talentList);
-//	        request.getRequestDispatcher(path).forward(request, response);
-//        }else {
-//        	path= "login.jsp";
-//        	loginDTO = LoginDTO.builder().build();
-//        	session.setAttribute("login", loginDTO);
-//	        session.setAttribute("talentList", null);
-//			response.sendRedirect(path);
-//        }
-
-
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

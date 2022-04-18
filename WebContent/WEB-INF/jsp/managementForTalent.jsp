@@ -20,14 +20,10 @@ LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
 CommentDTO commentDTO = (CommentDTO)session.getAttribute("commentDTO");
-RequestDTO requestDTO = (RequestDTO)session.getAttribute("requestDTO");
-List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
 List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestList");
 List<ProductDTO> productList = (List<ProductDTO>)session.getAttribute("productList");
-List<HistoryDTO> historyList = (List<HistoryDTO>)session.getAttribute("historyList");
-
 %>
 <!DOCTYPE html>
 <html>

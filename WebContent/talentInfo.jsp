@@ -51,26 +51,11 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gU1KhaJIYHE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ha8eQQm50RQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<%
-if(loginDTO==null||loginDTO.getId()==""){
-%>
-何も表示されません。
-<%}else{ %>
-<br>
-	<h1>ログイン</h1>
-	<%= loginDTO %><br>
-	<br>
 
-	<h1>ユーザー</h1>
-	<%= userDTO %><br>
-	<br>
+
 
 	<h1>タレント</h1>
 	<%= talentDTO %><br>
-	<br>
-
-	<h1>コメント</h1>
-	<%= commentDTO %><br>
 	<br>
 
 	<!--ユーザーリスト表示 -->
@@ -87,6 +72,5 @@ if(loginDTO==null||loginDTO.getId()==""){
 	<%} %>
 	<br>
 
-<%} %>
 </body>
 </html>
