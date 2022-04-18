@@ -22,7 +22,7 @@ public class ProcessFind implements ProcessFindInterface {
 	public LoginDTO findUserType(LoginDTO loginDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
-		String sql = "SELECT * FROM user_base_info WHERE user_id LIKE ? AND user_password LIKE ?";
+		String sql = "SELECT * FROM user_base_info WHERE user_name LIKE ? AND user_password LIKE ?";
 		Random rnd = new Random();
 		try (Connection conn = dbc.getConnection();
 				PreparedStatement pstm = conn.prepareStatement(sql)) {
