@@ -23,9 +23,9 @@ create table talent_base_info
     talent_blood_type  varchar(100),
     talent_group_name  varchar(100),
     talent_info08      varchar(100),
-    twitter_address    varchar(100),
-    youtube_address    varchar(100),
-    tiktok_address	varchar(100)
+    twitter_address    varchar(500),
+    youtube_address    varchar(500),
+    tiktok_address	varchar(500)
 );
 
 create table talent_live_info
@@ -99,7 +99,3 @@ create table user_request
             on update cascade on delete cascade,
     request_text varchar(100)
 );
-
-INSERT INTO user_base_info VALUES('test','test','test','testlink','GENERAL');
-INSERT INTO user_base_info VALUES('admin','admin','admin','testlink','OPERATION_MANAGER');
-INSERT INTO user_base_info VALUES('tadmin','tadmin','tadmin','testlink','TALENT_MANAGER');

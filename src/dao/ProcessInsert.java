@@ -17,7 +17,7 @@ public class ProcessInsert implements ProcessInsertInterface {
 	public boolean insertUserDTO(UserDTO userDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
-		String sql = "INSERT INTO user_base_info(user_id,user_name,user_password,img_address) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO user_base_info(user_id,user_name,user_password,img_address,user_type) VALUES (?, ?, ?, ?, ?)";
 		try (Connection conn = dbc.getConnection();
 			PreparedStatement pstm = conn.prepareStatement(sql)) {
 			pstm.setString(1, userDTO.getUserId());

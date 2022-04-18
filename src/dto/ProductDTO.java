@@ -24,4 +24,5 @@ public class ProductDTO implements Serializable {
 	private String productName;
 	private int productPrice;
 	private Date registrationDate;
+	private String productImg;
 }

@@ -18,9 +18,9 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 	public boolean userBaseInfo() {
 		  // CSVファイルを読み込み1行ずつ出力
 //		  BufferedReader br = null;
-		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\user_data.csv"; // 入力ファイル
+		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\userdata0418.csv"; // 入力ファイル
 		  String line; // 読み込み行
-		  String[] userAry; //8列
+		  String[] userAry; //11列
 		  ProcessInsert pi = new ProcessInsert();
 		  File file = new File(file_name);
 		  try(BufferedReader br = new BufferedReader(new FileReader(file));) {
@@ -56,7 +56,7 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 	public boolean userFavorite() {
 		  // CSVファイルを読み込み1行ずつ出力
 //		  BufferedReader br = null;
-		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\user_comment.csv"; // 入力ファイル
+		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\commentdata0418.csv"; // 入力ファイル
 		  String line; // 読み込み行
 		  String[] commentAry; //3列
 		  ProcessInsert pi = new ProcessInsert();
@@ -162,9 +162,9 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 		// TODO 自動生成されたメソッド・スタブ
 		  // CSVファイルを読み込み1行ずつ出力
 //		  BufferedReader br = null;
-		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\talentdata0411.csv"; // 入力ファイル
+		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\talentdata0418.csv"; // 入力ファイル
 		  String line; // 読み込み行
-		  String[] talentAry; //8列
+		  String[] talentAry=new String[11]; //11列
 		  ProcessInsert pi = new ProcessInsert();
 		  File file = new File(file_name);
 		  try(BufferedReader br = new BufferedReader(new FileReader(file));) {

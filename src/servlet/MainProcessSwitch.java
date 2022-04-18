@@ -64,10 +64,12 @@ public class MainProcessSwitch extends HttpServlet {
     		talentList=pf.findAllTalentDTOList();
 
     		//CommentList
-    		for(int i=0;i<10;i++) {
-    			CreateSample createSample = new CreateSample(select);
-    			commentList.add(createSample.createCommentDTO());
-    		}
+//    		for(int i=0;i<10;i++) {
+//    			CreateSample createSample = new CreateSample(select);
+//    			commentList.add(createSample.createCommentDTO());
+//    		}
+
+    		commentList=pf.findAllCommentDTOList();
 
     		//RequestList
     		for(int i=0;i<10;i++) {

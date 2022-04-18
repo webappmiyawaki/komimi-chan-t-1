@@ -99,7 +99,25 @@ public class ProcessFind implements ProcessFindInterface {
 	@Override
 	public List<CommentDTO> findAllCommentDTOList() {
 		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		List<CommentDTO> commentList = new ArrayList<>();
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM user_favorite";
+		Random rnd = new Random();
+		try (Connection conn = dbc.getConnection();
+			Statement stmt = conn.createStatement();) {
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+            	commentList.add(CommentDTO.builder()
+            			.talentId(rs.getString("talent_id"))
+            			.userId(rs.getString("user_id"))
+            			.comment(rs.getString("user_comment"))
+            			.build());
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return commentList;
 	}
 
 	@Override
