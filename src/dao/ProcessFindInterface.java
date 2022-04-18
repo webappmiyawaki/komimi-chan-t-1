@@ -4,6 +4,7 @@ import java.util.List;
 
 import dto.CommentDTO;
 import dto.LoginDTO;
+import dto.ProductDTO;
 import dto.RequestDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
@@ -32,7 +33,15 @@ public interface ProcessFindInterface {
 	 * @param UserDTO
 	 * @return List<UserDTO> or null
 	 */
-	List<UserDTO> findPersonOthersList(UserDTO userDTO);
+	List<UserDTO> findPersonOthersList(CommentDTO commentDTO);
+
+	/**
+	 * 似ているユーザー情報取得
+	 * メイン、マイページ、有名人情報ページ用
+	 * @param UserDTO
+	 * @return List<UserDTO> or null
+	 */
+	List<UserDTO> findAllPersonOthersList();
 
 	/**
 	 * お気に入りにしているタレント取得
@@ -49,7 +58,6 @@ public interface ProcessFindInterface {
 	 * @return List<UserDTO> or null
 	 */
 	List<TalentDTO> findAllTalentDTOList();
-
 
 	/**
 	 * コメントリスト取得
@@ -75,4 +83,11 @@ public interface ProcessFindInterface {
 	 */
 	List<RequestDTO> findAllRequestDTOList();
 
+	/**
+	 * タレントが出品している商品リスト取得
+	 * 管理ページ用
+	 * @param void
+	 * @return List<RequestDTO> or null
+	 */
+	List<ProductDTO> findAnyProductDTOList(TalentDTO talentDTO);
 }

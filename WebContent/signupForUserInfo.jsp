@@ -8,6 +8,7 @@ import="dto.TalentDTO"
 import="dto.UserDTO"
 import="dto.CommentDTO"
 import="java.util.List"
+import="dto.UserType"
 %>
 
 <!-- セッション取得部 -->
@@ -36,6 +37,30 @@ UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 <input  type="submit" value="失敗" name="select">
 </form>
 <br>
+
+<form action="/komimi-chan-t-1/SignupForUserInfo" method="post">
+
+
+名前入力：<input id="signup_name" type="text" name="user_name" value=""><br>
+パス入力：<input id="signup_pass" type="text" name="user_name" value=""><br>
+画像挿入：<input id="signup_img" type="text" name="user_img" value="sample_img" readonly><br>
+
+<td>商品分類：
+<select name="signup_user_type">
+<%
+for(UserType userType:UserType.values()){
+%>
+	<option value=<%=userType.getBunrui()%>><%=userType.getBunrui()%></option>
+<%
+}
+%>
+</select>
+</td>
+
+<input  type="submit" value="登録" name="select">
+</form>
+
+
 <%
 if(userDTO!=null){
 	if(userDTO.getUserId()==null){

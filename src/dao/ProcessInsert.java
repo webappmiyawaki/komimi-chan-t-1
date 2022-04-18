@@ -24,7 +24,7 @@ public class ProcessInsert implements ProcessInsertInterface {
 			pstm.setString(2, userDTO.getUserName());
 			pstm.setString(3, userDTO.getUserPass());
 			pstm.setString(4, userDTO.getInfo03());
-			pstm.setString(5, userDTO.getUser_type().name().toLowerCase());
+			pstm.setString(5, userDTO.getUserType().name().toLowerCase());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

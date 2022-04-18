@@ -18,16 +18,9 @@ import="java.util.List"
 request.setCharacterEncoding("UTF-8");
 LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
-TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
-CommentDTO commentDTO = (CommentDTO)session.getAttribute("commentDTO");
-RequestDTO requestDTO = (RequestDTO)session.getAttribute("requestDTO");
 List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
-List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestList");
-List<ProductDTO> productList = (List<ProductDTO>)session.getAttribute("productList");
-List<HistoryDTO> historyList = (List<HistoryDTO>)session.getAttribute("historyList");
-
 %>
 <!DOCTYPE html>
 <html>
@@ -55,41 +48,177 @@ if(loginDTO==null||loginDTO.getId()==""){
 何も表示されません。
 <%}else{ %>
 <br>
-	<h1>ログイン</h1>
-	<%= loginDTO %><br>
+	<h1>ユーザー情報</h1>
+	name:<%= userDTO.getUserName() %><br>
+	pass:<%= userDTO.getUserPass() %><br>
+	type:<%= userDTO.getUserType() %><br>
+	img :<%= userDTO.getInfo03() %><br>
+
+
+	<br>
+	<h1>好きなタレント一覧</h1>
+	<% for(TalentDTO talentDTO:talentList){
+		if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent01())){%>
+			favorite01:<%= talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent01())){%>
+				favorite01comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
 	<br>
 
-	<h1>ユーザー</h1>
-	<%= userDTO %><br>
+	<% for(TalentDTO talentDTO:talentList){ %>
+	<%	if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent02())){%>
+			favorite02:<%= talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent02())){%>
+				favorite02comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
 	<br>
 
-	<!--タレントリスト表示 -->
-	<h1>タレントリスト</h1>
-	<%for(TalentDTO talent:talentList){ %>
-	<%= talent %><br>
-	<%} %>
+	<% for(TalentDTO talentDTO:talentList){ %>
+	<%	if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent03())){%>
+			favorite03:<%= talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent03())){%>
+				favorite03comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
+	<br>
+
+
+	<% for(TalentDTO talentDTO:talentList){ %>
+	<%	if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent04())){%>
+			favorite04:<%= talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent04())){%>
+				favorite04comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
+	<br>
+
+
+	<% for(TalentDTO talentDTO:talentList){ %>
+	<%	if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent05())){%>
+			favorite05:<%= talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent05())){%>
+				favorite05comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
+
 	<br>
 
 	<!--ユーザーリスト表示 -->
-	<h1>ユーザーリスト</h1>
+	<h1>おすすめユーザー</h1>
+	<% int userCount =0; %>
 	<%for(UserDTO user:userList){ %>
-	<%= user %><br>
+		<% userCount++; %>
+		<% if(userCount>5)break; %>
+		ユーザー名：<%= user.getUserName() %><br>
+		<br>
+		<%if( user.getUserFavoriteTalent01()!=null){ %>
+			<% for(TalentDTO talentDTO:talentList){
+				if(talentDTO.getTalentId().equals(user.getUserFavoriteTalent01())){%>
+					othersfavorite01:<%= talentDTO.getTalentName() %><br>
+				<%  }%>
+			<% } %>
+			<% for(CommentDTO commentDTO:commentList){%>
+			<%	if(commentDTO.getUserId().equals(user.getUserId())){%>
+				<%	if(commentDTO.getTalentId().equals(user.getUserFavoriteTalent01())){%>
+						othersfavorite01comment:<%= commentDTO.getComment() %><br>
+				<%  }%>
+				<% } %>
+			<% } %>
+		<% } %>
+
+		<br>
+		<%if( user.getUserFavoriteTalent02()!=null){ %>
+			<% for(TalentDTO talentDTO:talentList){
+				if(talentDTO.getTalentId().equals(user.getUserFavoriteTalent02())){%>
+					othersfavorite02:<%= talentDTO.getTalentName() %><br>
+				<%  }%>
+			<% } %>
+			<% for(CommentDTO commentDTO:commentList){%>
+			<%	if(commentDTO.getUserId().equals(user.getUserId())){%>
+				<%	if(commentDTO.getTalentId().equals(user.getUserFavoriteTalent02())){%>
+						othersfavorite02comment:<%= commentDTO.getComment() %><br>
+				<%  }%>
+				<% } %>
+			<% } %>
+		<% } %>
+
+		<br>
+		<%if( user.getUserFavoriteTalent03()!=null){ %>
+			<% for(TalentDTO talentDTO:talentList){
+				if(talentDTO.getTalentId().equals(user.getUserFavoriteTalent03())){%>
+					othersfavorite03:<%= talentDTO.getTalentName() %><br>
+				<%  }%>
+			<% } %>
+			<% for(CommentDTO commentDTO:commentList){%>
+			<%	if(commentDTO.getUserId().equals(user.getUserId())){%>
+				<%	if(commentDTO.getTalentId().equals(user.getUserFavoriteTalent03())){%>
+						othersfavorite03comment:<%= commentDTO.getComment() %><br>
+				<%  }%>
+				<% } %>
+			<% } %>
+		<% } %>
+
+		<br>
+		<%if( user.getUserFavoriteTalent04()!=null){ %>
+			<% for(TalentDTO talentDTO:talentList){
+				if(talentDTO.getTalentId().equals(user.getUserFavoriteTalent04())){%>
+					othersfavorite04:<%= talentDTO.getTalentName() %><br>
+				<%  }%>
+			<% } %>
+			<% for(CommentDTO commentDTO:commentList){%>
+			<%	if(commentDTO.getUserId().equals(user.getUserId())){%>
+				<%	if(commentDTO.getTalentId().equals(user.getUserFavoriteTalent04())){%>
+						othersfavorite04comment:<%= commentDTO.getComment() %><br>
+				<%  }%>
+				<% } %>
+			<% } %>
+		<% } %>
+		<br>
+		<%if( user.getUserFavoriteTalent05()!=null){ %>
+			<% for(TalentDTO talentDTO:talentList){
+				if(talentDTO.getTalentId().equals(user.getUserFavoriteTalent05())){%>
+					othersfavorite05:<%= talentDTO.getTalentName() %><br>
+				<%  }%>
+			<% } %>
+			<% for(CommentDTO commentDTO:commentList){%>
+			<%	if(commentDTO.getUserId().equals(user.getUserId())){%>
+				<%	if(commentDTO.getTalentId().equals(user.getUserFavoriteTalent05())){%>
+						othersfavorite05comment:<%= commentDTO.getComment() %><br>
+				<%  }%>
+				<% } %>
+			<% } %>
+		<% } %>
+		<br>
 	<%} %>
 	<br>
 
-	<!--コメントリスト表示 -->
-	<h1>コメントリスト</h1>
-	<%for(CommentDTO comment:commentList){ %>
-	<%= comment %><br>
-	<%} %>
-	<br>
-
-	<!--リクエストリスト表示 -->
-	<h1>リクエストリスト</h1>
-	<%for(RequestDTO requestUnit:requestList){ %>
-	<%= requestUnit %><br>
-	<%} %>
-	<br>
 <%} %>
 
 </body>

@@ -20,10 +20,10 @@ public class UserDTO implements Serializable{
 	private String userName;
 	private String userPass;
 	private String info03;
-	private UserType user_type;
-	private String userLikeTalent01;
-	private String userLikeTalent02;
-	private String userLikeTalent03;
-	private String userLikeTalent04;
-	private String userLikeTalent05;
+	private UserType userType;
+	private String userFavoriteTalent01;
+	private String userFavoriteTalent02;
+	private String userFavoriteTalent03;
+	private String userFavoriteTalent04;
+	private String userFavoriteTalent05;
 }

@@ -17,6 +17,7 @@ LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@ List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList")
 <title>芸能人購買ページ一覧</title>
 </head>
 <body>
+
 芸能人購買ページ一覧<br>
 <a href="/komimi-chan-t-1/Main">メイン</a>
 <a href="/komimi-chan-t-1/PurchasingPageForEach">個別</a>

@@ -35,7 +35,7 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 						  .userName(userAry[1])
 						  .userPass(userAry[2])
 						  .info03(userAry[3])
-						  .user_type(UserType.valueOf(userAry[4].toUpperCase()))
+						  .userType(UserType.valueOf(userAry[4].toUpperCase()))
 						  .build();
 						  System.out.println(userDTO);
 						  pi.insertUserDTO(userDTO);

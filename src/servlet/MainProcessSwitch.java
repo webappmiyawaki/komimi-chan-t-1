@@ -13,11 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import dao.ProcessFind;
 import dto.CommentDTO;
-import dto.LoginDTO;
-import dto.RequestDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
-import sample.CreateSample;
 
 @WebServlet("/MainProcessSwitch")
 public class MainProcessSwitch extends HttpServlet {
@@ -26,34 +23,25 @@ public class MainProcessSwitch extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String select = request.getParameter("select");
 		HttpSession session = request.getSession();
-		LoginDTO loginDTO = new LoginDTO();
-		UserDTO userDTO = new UserDTO();
-		TalentDTO talentDTO = new TalentDTO();
 		CommentDTO commentDTO = new CommentDTO();
-		RequestDTO requestDTO = new RequestDTO();
 		List<UserDTO> userList = new ArrayList<>();
 		List<TalentDTO> talentList = new ArrayList<>();
 		List<CommentDTO> commentList = new ArrayList<>();
-		List<RequestDTO> requestList = new ArrayList<>();
         boolean isSampleMaker = true;
         if(isSampleMaker) {
 
     		//DTO作成用
-        	if(true) {
-	        	//LoginDTO
-	    		CreateSample createSample = new CreateSample(select);
-	    		loginDTO = createSample.createLoginDTO();
-	    		userDTO = createSample.createUserDTO();
-	    		talentDTO = createSample.createTalentDTO();
-	    		commentDTO = createSample.createCommentDTO();
-	    		requestDTO = createSample.createRequestDTO();
-    		}
+//        	if(true) {
+//	        	//LoginDTO
+//	    		CreateSample createSample = new CreateSample(select);
+//	    		commentDTO = createSample.createCommentDTO();
+//    		}
 
     		//UserList
-    		for(int i=0;i<10;i++) {
-    			CreateSample createSample = new CreateSample(select);
-    			userList.add(createSample.createUserDTO());
-    		}
+//    		for(int i=0;i<10;i++) {
+//    			CreateSample createSample = new CreateSample(select);
+//    			userList.add(createSample.createUserDTO());
+//    		}
 
     		//TalentList
 //    		for(int i=0;i<10;i++) {
@@ -62,7 +50,7 @@ public class MainProcessSwitch extends HttpServlet {
 //    		}
     		ProcessFind pf = new ProcessFind();
     		talentList=pf.findAllTalentDTOList();
-
+    		userList=pf.findAllPersonOthersList();
     		//CommentList
 //    		for(int i=0;i<10;i++) {
 //    			CreateSample createSample = new CreateSample(select);
@@ -71,22 +59,12 @@ public class MainProcessSwitch extends HttpServlet {
 
     		commentList=pf.findAllCommentDTOList();
 
-    		//RequestList
-    		for(int i=0;i<10;i++) {
-    			CreateSample createSample = new CreateSample(select);
-    			requestList.add(createSample.createRequestDTO());
-    		}
         }
 
-        session.setAttribute("login", loginDTO);
-        session.setAttribute("userDTO", userDTO);
-        session.setAttribute("talentDTO", talentDTO);
         session.setAttribute("commentDTO", commentDTO);
-        session.setAttribute("requestDTO", requestDTO);
         session.setAttribute("userList", userList);
         session.setAttribute("talentList", talentList);
         session.setAttribute("commentList", commentList);
-        session.setAttribute("requestList", requestList);
 
         String path= "";
         switch(select) {

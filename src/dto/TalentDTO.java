@@ -8,13 +8,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+//@ToString
 @Builder
 public class TalentDTO implements Serializable{
 	private String talentId;
@@ -40,5 +39,8 @@ public class TalentDTO implements Serializable{
 	private ProductDTO product04;
 	private ProductDTO product05;
 
-
+	public String ToString() {
+		return String.format("img:%s group:%s name:%s",this.talentImgAddress,this.talentGroupName,this.talentName);
+	}
 }
+

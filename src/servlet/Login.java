@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ProcessFind;
 import dto.LoginDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
@@ -36,7 +37,7 @@ public class Login extends HttpServlet {
 		UserDTO userDTO = new UserDTO();
 		LoginCheck loginCheck = new LoginCheck();
 		loginDTO = loginCheck.isLoginDTO(loginDTO);
-
+		ProcessFind pf = new ProcessFind();
 		String path="";
 		if(loginDTO!=null) {
 			switch(loginDTO.getUserType()) {
@@ -50,13 +51,16 @@ public class Login extends HttpServlet {
 				path= "/ManagementForOperation";
 				break;
 			}
+			userDTO = pf.findPersonMyself(loginDTO);
 		}else {
         	path= "login.jsp";
         	loginDTO = LoginDTO.builder().build();
         	talentList=null;
 //			response.sendRedirect(path);
 		}
+
 		session.setAttribute("login", loginDTO);
+		session.setAttribute("userDTO", userDTO);
         session.setAttribute("talentList", talentList);
 		request.getRequestDispatcher(path).forward(request, response);
 
