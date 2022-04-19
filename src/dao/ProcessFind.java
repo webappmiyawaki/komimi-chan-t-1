@@ -100,7 +100,7 @@ public class ProcessFind implements ProcessFindInterface {
 		// TODO 自動生成されたメソッド・スタブ
 		List<UserDTO> userList = new ArrayList<>();
 		DBConnector dbc = new DBConnector();
-		String sql = "SELECT * FROM user_base_info WHERE user_id =  LIKE ?";
+		String sql = "SELECT * FROM user_base_info WHERE user_id LIKE ?";
 		try (Connection conn = dbc.getConnection();
 				PreparedStatement pstm = conn.prepareStatement(sql)) {
 			pstm.setString(1, commentDTO.getUserId());
@@ -126,11 +126,12 @@ public class ProcessFind implements ProcessFindInterface {
 		// TODO 自動生成されたメソッド・スタブ
 		List<TalentDTO> talentList = new ArrayList<>();
 		DBConnector dbc = new DBConnector();
-		String sql = "SELECT * FROM talent_base_info WHERE user_id =  LIKE ?";
+		String sql = "SELECT * FROM talent_base_info WHERE talent_id LIKE ?";
 		Random rnd = new Random();
 		try (Connection conn = dbc.getConnection();
-			Statement stmt = conn.createStatement();) {
-			ResultSet rs = stmt.executeQuery(sql);
+				PreparedStatement pstm = conn.prepareStatement(sql);) {
+			pstm.setString(1, userDTO.getUserFavoriteTalent01());
+			ResultSet rs = pstm.executeQuery(sql);
 			while(rs.next()) {
             	talentList.add(TalentDTO.builder()
             			.talentId(rs.getString("talent_id"))
@@ -148,8 +149,8 @@ public class ProcessFind implements ProcessFindInterface {
             			.build());
             }
 		} catch (SQLException e) {
+			//もんだいなし
 			e.printStackTrace();
-			return null;
 		}
 		return talentList;
 	}
@@ -191,7 +192,7 @@ public class ProcessFind implements ProcessFindInterface {
 		// TODO 自動生成されたメソッド・スタブ
 		List<CommentDTO> commentList = new ArrayList<>();
 		DBConnector dbc = new DBConnector();
-		String sql = "SELECT * FROM user_favorite WHERE user_id =  LIKE ?";
+		String sql = "SELECT * FROM user_favorite WHERE user_id LIKE ?";
 		try (Connection conn = dbc.getConnection();
 				PreparedStatement pstm = conn.prepareStatement(sql)) {
 			pstm.setString(1, userDTO.getUserId());
@@ -262,7 +263,7 @@ public class ProcessFind implements ProcessFindInterface {
 		// TODO 自動生成されたメソッド・スタブ
 		List<ProductDTO> productList = new ArrayList<>();
 		DBConnector dbc = new DBConnector();
-		String sql = "SELECT * FROM product_by_talent WHERE talent_id =  LIKE ?";
+		String sql = "SELECT * FROM product_by_talent WHERE talent_id LIKE ?";
 		try (Connection conn = dbc.getConnection();
 				PreparedStatement pstm = conn.prepareStatement(sql)) {
 			pstm.setString(1, talentDTO.getTalentId());
@@ -346,7 +347,7 @@ public class ProcessFind implements ProcessFindInterface {
 		// TODO 自動生成されたメソッド・スタブ
 		List<HistoryDTO> historyList= new ArrayList<>();
 		DBConnector dbc = new DBConnector();
-		String sql = "SELECT * FROM user_purchase_history WHERE user_id =  LIKE ?";
+		String sql = "SELECT * FROM user_purchase_history WHERE user_id LIKE ?";
 		try (Connection conn = dbc.getConnection();
 				PreparedStatement pstm = conn.prepareStatement(sql)) {
 			pstm.setString(1, userDTO.getUserId());
@@ -389,6 +390,111 @@ public class ProcessFind implements ProcessFindInterface {
 			return null;
 		}
 		return productList;
+	}
+
+	@Override
+	public TalentDTO findTalentDTO(String talentId) {
+		// TODO 自動生成されたメソッド・スタブ
+		TalentDTO talentDTO=null;
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM talent_base_info WHERE talent_id LIKE ?";
+		Random rnd = new Random();
+		try (Connection conn = dbc.getConnection();
+				PreparedStatement pstm = conn.prepareStatement(sql);) {
+			pstm.setString(1, talentId);
+			ResultSet rs = pstm.executeQuery();
+			rs.next();
+			talentDTO=TalentDTO.builder()
+            			.talentId(rs.getString("talent_id"))
+            			.talentName(rs.getString("talent_name"))
+            			.talentImgAddress(rs.getString("talent_img_address"))
+            			.talentBirthPlace(rs.getString("talent_birth_place"))
+            			.talentBirthday(null)
+            			.talentBloodType(rs.getString("talent_blood_type"))
+            			.talentGroupName(rs.getString("talent_group_name"))
+            			.talentInfo08(rs.getString("talent_info08"))
+            			.talentFavoriteCount(rnd.nextInt(1000))
+            			.twitterAddress(rs.getString("twitter_address"))
+            			.youtubeAddress(rs.getString("youtube_address"))
+            			.tiktokAddress(rs.getString("tiktok_address"))
+            			.build();
+		} catch (SQLException e) {
+			//もんだいなし
+			e.printStackTrace();
+		}
+		return talentDTO;
+	}
+
+	@Override
+	public UserDTO findPersonOthers(String personOthersID) {
+		// TODO 自動生成されたメソッド・スタブ
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM user_base_info WHERE user_id LIKE ? ";
+		Random rnd = new Random();
+		UserDTO userDTO;
+		try (Connection conn = dbc.getConnection();
+				PreparedStatement pstm = conn.prepareStatement(sql)) {
+			pstm.setString(1, personOthersID);
+			ResultSet rs = pstm.executeQuery();
+			rs.next();
+
+			userDTO = UserDTO.builder()
+					.userId(rs.getString("user_id"))
+					.userName(rs.getString("user_name"))
+					.userPass(rs.getString("user_password"))
+					.info03(rs.getString("img_address"))
+					.userType(UserType.valueOf(rs.getString("user_type").toUpperCase()))
+					.build();
+		} catch (SQLException e) {
+			System.out.println("user base info");
+			return null;
+		}
+
+		sql = "SELECT * FROM user_favorite WHERE user_id LIKE ?";
+		try (Connection conn = dbc.getConnection();
+				PreparedStatement pstm = conn.prepareStatement(sql)) {
+			pstm.setString(1, userDTO.getUserId());
+			ResultSet rs = pstm.executeQuery();
+			rs.next();
+			userDTO.setUserFavoriteTalent01(rs.getString("talent_id"));
+			rs.next();
+			userDTO.setUserFavoriteTalent02(rs.getString("talent_id"));
+			rs.next();
+			userDTO.setUserFavoriteTalent03(rs.getString("talent_id"));
+			rs.next();
+			userDTO.setUserFavoriteTalent04(rs.getString("talent_id"));
+			rs.next();
+			userDTO.setUserFavoriteTalent05(rs.getString("talent_id"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			//お気に入り無しで戻り値
+			return userDTO;
+		}
+		return userDTO;
+	}
+
+	@Override
+	public List<CommentDTO> findCommentTalentList(String talentId) {
+		// TODO 自動生成されたメソッド・スタブ
+		List<CommentDTO> commentList = new ArrayList<>();
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM user_favorite WHERE talent_id LIKE ?";
+		try (Connection conn = dbc.getConnection();
+				PreparedStatement pstm = conn.prepareStatement(sql)) {
+			pstm.setString(1, talentId);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+            	commentList.add(CommentDTO.builder()
+    					.userId(rs.getString("user_id"))
+    					.talentId(rs.getString("talent_id"))
+    					.comment(rs.getString("user_comment"))
+    					.build());
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return commentList;
 	}
 
 }

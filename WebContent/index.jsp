@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
     <%	session.setAttribute("userDTO", null); %>
     <%	session.setAttribute("loginDTO", null); %>
-     <%	session.setAttribute("userList", null); %>
-      <%	session.setAttribute("talentList", null); %>
-       <%	session.setAttribute("commentList", null); %>
+    <%	session.setAttribute("userList", null); %>
+    <%	session.setAttribute("talentList", null); %>
+    <%	session.setAttribute("commentList", null); %>
 
 <!DOCTYPE html>
 <html>

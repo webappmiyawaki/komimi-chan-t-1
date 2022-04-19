@@ -45,7 +45,7 @@ UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 パス入力：<input id="signup_pass" type="text" name="user_name" value=""><br>
 画像挿入：<input id="signup_img" type="text" name="user_img" value="sample_img" readonly><br>
 
-<td>商品分類：
+<td>ユーザー分類：
 <select name="signup_user_type">
 <%
 for(UserType userType:UserType.values()){

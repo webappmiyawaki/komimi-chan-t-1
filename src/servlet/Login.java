@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ProcessFind;
+import dto.CommentDTO;
 import dto.LoginDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
@@ -25,7 +26,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String select = request.getParameter("select");
-		String userName = request.getParameter("username");
+		String userName = request.getParameter("userName");
 		String userPass= request.getParameter("userPass");
 
 		HttpSession session = request.getSession();
@@ -57,20 +58,77 @@ public class Login extends HttpServlet {
 			talentList=pf.findAllTalentDTOList();
 		}else {
         	path= "login.jsp";
-        	loginDTO = LoginDTO.builder().build();
+        	loginDTO = null;
         	talentList=null;
 //			response.sendRedirect(path);
+			request.getRequestDispatcher(path).forward(request, response);
 		}
+
 		Map<String,TalentDTO>talentMap=new HashMap<>();
 		String key="";
 		for(TalentDTO talentDTO:talentList) {
-			key=talentDTO.getTalentId();
-			talentMap.put(key,talentDTO);
+			talentMap.put(talentDTO.getTalentId(),talentDTO);
 		}
+		Map<String,TalentDTO>myTalentMap=talentMap;
+
+		UserDTO myUserDTO = new UserDTO();
+		UserDTO othersUserDTO = new UserDTO();
+
+		CommentDTO commentDTO = new CommentDTO();
+		List<UserDTO> userList = new ArrayList<>();
+		List<UserDTO> personOthersList = new ArrayList<>();
+		List<CommentDTO> commentList = new ArrayList<>();
+
+		List<UserDTO> myUserList = new ArrayList<>();
+		List<TalentDTO> myTalentList = new ArrayList<>();
+		List<CommentDTO> myCommentList = new ArrayList<>();
+
+		List<UserDTO> othersUserList = new ArrayList<>();
+		List<TalentDTO> othersTalentList = new ArrayList<>();
+		List<CommentDTO> othersCommentList = new ArrayList<>();
+
+		//自分のタレントリストを作成
+		myUserDTO = userDTO;
+		myTalentList.add(pf.findTalentDTO(myUserDTO.getUserFavoriteTalent01()));
+		myTalentList.add(pf.findTalentDTO(myUserDTO.getUserFavoriteTalent02()));
+		myTalentList.add(pf.findTalentDTO(myUserDTO.getUserFavoriteTalent03()));
+		myTalentList.add(pf.findTalentDTO(myUserDTO.getUserFavoriteTalent04()));
+		myTalentList.add(pf.findTalentDTO(myUserDTO.getUserFavoriteTalent05()));
+
+		myUserDTO.setUserFavoriteTalentList(myTalentList);
+		myUserDTO.setCommentDTOList(pf.findCommentDTOList(myUserDTO));
+
+
+//		ProcessFind pf = new ProcessFind();
+//		talentList=pf.findAllTalentDTOList();
+//		userList=pf.findAllPersonOthersList();
+		personOthersList=pf.findAllPersonOthersList();
+//		productList=pf.findAllProductDTOList();
+//		commentList=pf.findAllCommentDTOList();
+
+
+		//****使わなくなる
+        session.setAttribute("commentDTO", commentDTO);
+        session.setAttribute("userList", userList);
+        session.setAttribute("personOthersList", personOthersList);
+        session.setAttribute("talentList", talentList);
+        session.setAttribute("commentList", commentList);
+        //********
+
+        //****ここ使う***
+        session.setAttribute("myUserList", myUserList);
+        session.setAttribute("myTalentList", myTalentList);
+        session.setAttribute("myCommentList", myCommentList);
+
+        session.setAttribute("othersUserList", othersUserList);
+        session.setAttribute("othersTalentList", othersTalentList);
+        session.setAttribute("othersCommentList", othersCommentList);
+
 		session.setAttribute("login", loginDTO);
 		session.setAttribute("userDTO", userDTO);
-        session.setAttribute("talentList", talentList);
-        session.setAttribute("talentMap", talentMap);
+        session.setAttribute("myTalentMap", myTalentMap);
+      //*******
+
 		request.getRequestDispatcher(path).forward(request, response);
 
 	}

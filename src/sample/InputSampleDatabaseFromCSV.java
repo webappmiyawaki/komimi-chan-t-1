@@ -162,7 +162,7 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 		// TODO 自動生成されたメソッド・スタブ
 		  // CSVファイルを読み込み1行ずつ出力
 //		  BufferedReader br = null;
-		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\talentdata0418.csv"; // 入力ファイル
+		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\talent_base_info0420.csv"; // 入力ファイル
 		  String line; // 読み込み行
 		  String[] talentAry=new String[11]; //11列
 		  ProcessInsert pi = new ProcessInsert();

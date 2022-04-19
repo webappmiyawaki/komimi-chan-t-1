@@ -18,19 +18,14 @@ import="java.util.List"
 request.setCharacterEncoding("UTF-8");
 LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
-TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
-CommentDTO commentDTO = (CommentDTO)session.getAttribute("commentDTO");
-List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
-List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
+UserDTO personOthers = (UserDTO)session.getAttribute("personOthersDTO");
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!--
-<meta http-equiv="refresh" content="1; URL=/komimiSample/Main">
--->
+
 <title>PersonOthers</title>
 </head>
 <body>
@@ -38,39 +33,31 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 <a href="/komimi-chan-t-1/Main">戻る</a>
 おすすめユーザー<br>
 <br>
-<form action="/komimi-chan-t-1/PersonOthersProcessSwitch" method="post">
-<input  type="submit" value="talentInfo" name="select">talentInfo<br>
-</form>
+
+<h1>ユーザー</h1>
+画像：<%= personOthers.getInfo03() %><br>
+名前：<%= personOthers.getUserName() %><br>
 <br>
+
+タレントリスト
 <%
-if(loginDTO==null||loginDTO.getId()==""){
+TalentDTO talent=null;
+int counter=0;
 %>
-何も表示されません。
-<%}else{ %>
+<%for(TalentDTO talentDTO:personOthers.getUserFavoriteTalentList()){ %>
+<form action="/komimi-chan-t-1/TalentInfo" method="post">
+<% if(talentDTO!=null){ %>
+	<img src="<%= request.getContextPath()+"/img/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+	<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
+	<%= "favorite:"+talentDTO.getTalentName() %><br>
+	<%= "comment:"+userDTO.getCommentDTOList().get(counter).getComment() %><br>
+	<% counter++; %>
+<input  type="submit" value=<%= talentDTO.getTalentId() %> name="talentDTO"><br>
+</form>
+<% } %>
+<% } %>
+
 <br>
-	<h1>ログイン</h1>
-	<%= loginDTO %><br>
-	<br>
-
-	<h1>ユーザー</h1>
-	<%= userDTO %><br>
-	<br>
-
-	<!--タレントリスト表示 -->
-	<h1>タレントリスト</h1>
-	<%for(TalentDTO talent:talentList){ %>
-	<%= talent %><br>
-	<%} %>
-	<br>
-
-	<!--コメントリスト表示 -->
-	<h1>コメントリスト</h1>
-	<%for(CommentDTO comment:commentList){ %>
-	<%= comment %><br>
-	<%} %>
-	<br>
-
-<%} %>
 
 </body>
 </html>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dto.TalentDTO;
+import dao.ProcessFind;
 
 @WebServlet("/TalentInfo")
 public class TalentInfo extends HttpServlet {
@@ -21,9 +21,11 @@ public class TalentInfo extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		TalentDTO talentDTO= (TalentDTO)request.getAttribute("talentDTO");
+		String talentId= request.getParameter("talentDTO");
 		HttpSession session = request.getSession();
-		session.setAttribute("talentDTO", talentDTO);
+		ProcessFind pf = new ProcessFind();
+		session.setAttribute("talentDTO", pf.findTalentDTO(talentId));
+		session.setAttribute("commentTalentList", pf.findCommentTalentList(talentId));
 		doGet(request, response);
 	}
 }

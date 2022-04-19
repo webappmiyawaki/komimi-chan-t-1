@@ -10,7 +10,7 @@ import="dto.CommentDTO"
 import="dto.RequestDTO"
 import="dto.ProductDTO"
 import="dto.HistoryDTO"
-import="java.util.List"
+import="java.util.*"
 %>
 
 <!-- セッション取得部 -->
@@ -19,7 +19,7 @@ request.setCharacterEncoding("UTF-8");
 LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
-Map<String,TalentDTO>talentMap=(Map<String,TalentDTO>session.getAttribute("talentMap");
+Map<String,TalentDTO>talentMap=(Map<String,TalentDTO>)session.getAttribute("talentMap");
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
 %>

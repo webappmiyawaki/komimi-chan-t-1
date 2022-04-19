@@ -29,6 +29,21 @@ public interface ProcessFindInterface {
 	UserDTO findPersonMyself(LoginDTO loginDTO);
 
 	/**
+	 * おすすめのユーザー情報取得
+	 * @param String
+	 * @return UserDTO or null
+	 */
+	UserDTO findPersonOthers(String personOthersID);
+
+	/**
+	 * タレント情報取得
+	 * マイページ用
+	 * @param String
+	 * @return TalentDTO or null
+	 */
+	TalentDTO findTalentDTO(String talentId);
+
+	/**
 	 * 似ているユーザー情報取得
 	 * メイン、マイページ、有名人情報ページ用
 	 * @param UserDTO
@@ -75,6 +90,13 @@ public interface ProcessFindInterface {
 	 * @return List<CommentDTO> or null
 	 */
 	List<CommentDTO> findAllCommentDTOList();
+
+	/**
+	 * タレントのコメント取得
+	 * @param String
+	 * @return List<CommentDTO> or null
+	 */
+	List<CommentDTO> findCommentTalentList(String talentId);
 
 	/**
 	 * 登録されているすべてのリクエスト取得

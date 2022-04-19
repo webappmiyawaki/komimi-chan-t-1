@@ -5,7 +5,7 @@ public class ReadDataFromCSV {
 		InputSampleDatabaseFromCSV cdb = new InputSampleDatabaseFromCSV();
 //		cdb.userBaseInfo();
 //		cdb.TalentBaseInfo();
-		cdb.userRequest();
+//		cdb.userRequest();
 //		cdb.userFavorite();
 //		cdb.userPurchaseHistory();
 //		cdb.ProductByTalent();

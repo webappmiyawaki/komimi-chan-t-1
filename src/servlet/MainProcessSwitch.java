@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,12 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ProcessFind;
-import dto.CommentDTO;
-import dto.ProductDTO;
-import dto.TalentDTO;
-import dto.UserDTO;
-
 @WebServlet("/MainProcessSwitch")
 public class MainProcessSwitch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,26 +16,7 @@ public class MainProcessSwitch extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String select = request.getParameter("select");
 		HttpSession session = request.getSession();
-		CommentDTO commentDTO = new CommentDTO();
-		List<UserDTO> userList = new ArrayList<>();
-		List<UserDTO> personOthersList = new ArrayList<>();
-		List<TalentDTO> talentList = new ArrayList<>();
-		List<CommentDTO> commentList = new ArrayList<>();
-		List<ProductDTO> productList = new ArrayList<>();
 
-		ProcessFind pf = new ProcessFind();
-		talentList=pf.findAllTalentDTOList();
-		userList=pf.findAllPersonOthersList();
-		personOthersList=pf.findAllPersonOthersList();
-		productList=pf.findAllProductDTOList();
-		commentList=pf.findAllCommentDTOList();
-
-        session.setAttribute("commentDTO", commentDTO);
-        session.setAttribute("userList", userList);
-        session.setAttribute("personOthersList", personOthersList);
-        session.setAttribute("talentList", talentList);
-        session.setAttribute("commentList", commentList);
-        session.setAttribute("productAllList", productList);
         String path= "";
         switch(select) {
         	case "main":
@@ -56,10 +29,10 @@ public class MainProcessSwitch extends HttpServlet {
         		path="/PersonOthers";
         		break;
         	case "managementForOperation":
-        		path="/WEB-INF/jsp/ManagementForOperation";
+        		path="/ManagementForOperation";
         		break;
         	case "managementForTalent":
-        		path="/WEB-INF/jsp/ManagementForTalent";
+        		path="/ManagementForTalent";
         		break;
         	case "signup":
         		path="/Signup";

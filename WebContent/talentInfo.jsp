@@ -20,6 +20,8 @@ CommentDTO commentDTO = (CommentDTO)session.getAttribute("commentDTO");
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
 List<UserDTO> personOthersList = (List<UserDTO>)session.getAttribute("personOthersList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
+List<CommentDTO> commentTalentList = (List<CommentDTO>)session.getAttribute("commentTalentList");
+
 %>
 
 <!DOCTYPE html>
@@ -41,36 +43,61 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 <input  type="submit" value="personOthers" name="select">personOthers<br>
 </form>
 <br>
-
-<a class="twitter-timeline" data-width="220" data-height="440" href="https://twitter.com/blizzard0828?ref_src=twsrc%5Etfw">Tweets by blizzard0828</a>
+<br>
+<br>
+twitter<br>
+<a class="twitter-timeline"
+data-width="560"
+data-height="440"
+href="https://twitter.com/<%= talentDTO.getTwitterAddress() %>?ref_src=twsrc%5Etfw">
+</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<br>
+<br>
+<br>
+youtube<br>
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/<%= talentDTO.getYoutubeAddress() %>"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
-<a class="twitter-timeline" data-width="220" data-height="440" href="https://twitter.com/tamahito_waters?ref_src=twsrc%5Etfw">Tweets by tamahito_waters</a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@uespiiiii.1115" data-unique-id="uespiiiii.1115"  data-embed-type="creator" style="max-width: 720px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@uespiiiii.1115?refer=creator_embed">@uespiiiii.1115</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gU1KhaJIYHE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ha8eQQm50RQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+ticktok<br>
+<blockquote
+class="tiktok-embed"
+cite="https://www.tiktok.com/@uespiiiii.1115"
+data-unique-id="uespiiiii.1115"
+data-embed-type="creator"
+style="max-width: 720px; min-width: 288px;" >
+<section>
+ <a target="_blank" href="https://www.tiktok.com/@uespiiiii.1115?refer=creator_embed">@uespiiiii.1115</a>
+</section>
+</blockquote>
+<script async src="https://www.tiktok.com/embed.js"></script>
 
 
 	<h1>タレント</h1>
-	<%= talentDTO %><br>
-	<br>
-
-	<!--ユーザーリスト表示 -->
-	<h1>ユーザーリスト</h1>
-	<%for(UserDTO user:userList){ %>
-	<%= user %><br>
-	<%} %>
+	画像：<%= talentDTO.getTalentImgAddress() %><br>
+	名前：<%= talentDTO.getTalentName() %><br>
+	コンビ名：<%= talentDTO.getTalentGroupName() %><br>
+	出身地：<%= talentDTO.getTalentBirthPlace() %><br>
+	血液型：<%= talentDTO.getTalentBloodType() %><br>
+	お気に入り数：<%= talentDTO.getTalentFavoriteCount() %><br>
+	Twitter：<%= talentDTO.getTwitterAddress() %><br>
+	Youtube：<%= talentDTO.getYoutubeAddress() %><br>
+	Tiktok:<%= talentDTO.getTiktokAddress() %><br>
 	<br>
 
 	<!--コメントリスト表示 -->
 	<h1>コメントリスト</h1>
-	<%for(CommentDTO comment:commentList){ %>
-	<%= comment %><br>
-	<%} %>
+	<%int counter=0; %>
+	<%for(CommentDTO comment:commentTalentList){ %>
+	<p>
+	<%="コメント "+ counter+"." %><br>
+	<%= comment.getComment() %></p>
+	<% counter++;%>
+	<% } %>
 	<br>
 
 </body>

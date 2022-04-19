@@ -2,6 +2,7 @@ package dto;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,11 +34,18 @@ public class TalentDTO implements Serializable{
 	private String talentLiveInf03;
 	private String talentLiveInf04;
 	private String talentLiveInf05;
+
+	//****なくなる***
 	private ProductDTO product01;
 	private ProductDTO product02;
 	private ProductDTO product03;
 	private ProductDTO product04;
 	private ProductDTO product05;
+	//*******
+
+	//product01-05→list化
+	private List<ProductDTO> productList;
+
 
 	public String ToString() {
 		return String.format("img:%s group:%s name:%s",this.talentImgAddress,this.talentGroupName,this.talentName);

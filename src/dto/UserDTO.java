@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,4 +27,10 @@ public class UserDTO implements Serializable{
 	private String userFavoriteTalent03;
 	private String userFavoriteTalent04;
 	private String userFavoriteTalent05;
+
+	//favoriteTalent01-05→list化
+	private List<TalentDTO> userFavoriteTalentList;
+
+	//commentList
+	private List<CommentDTO> commentDTOList;
 }

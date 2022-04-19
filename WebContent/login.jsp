@@ -20,7 +20,7 @@ LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 
 ログイン
 <form action="/komimi-chan-t-1/Login" method="post">
-name  :<input  type="text" value="" name="username"><br>
+name  :<input  type="text" value="" name="userName"><br>
 pass:<input  type="password" value="" name="userPass"><br>
 <input  type="submit" value="確定" name="select">
 </form>
