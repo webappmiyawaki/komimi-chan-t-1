@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import dto.CommentDTO;
+import dto.HistoryDTO;
 import dto.LoginDTO;
 import dto.ProductDTO;
 import dto.RequestDTO;
@@ -90,4 +91,19 @@ public interface ProcessFindInterface {
 	 * @return List<RequestDTO> or null
 	 */
 	List<ProductDTO> findAnyProductDTOList(TalentDTO talentDTO);
+
+	/**
+	 * 全ての商品リスト取得
+	 * 管理ページ用
+	 * @param void
+	 * @return List<ProductDTO> or null
+	 */
+	List<ProductDTO> findAllProductDTOList();
+
+	/**
+	 * 個人の商品購買履歴
+	 * @param userDTO
+	 * @return List<HistoryDTO> or null
+	 */
+	List<HistoryDTO> findAnyHistoryDTOList(UserDTO userDTO);
 }

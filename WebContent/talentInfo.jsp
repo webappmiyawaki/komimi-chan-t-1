@@ -18,6 +18,7 @@ UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
 CommentDTO commentDTO = (CommentDTO)session.getAttribute("commentDTO");
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
+List<UserDTO> personOthersList = (List<UserDTO>)session.getAttribute("personOthersList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
 %>
 

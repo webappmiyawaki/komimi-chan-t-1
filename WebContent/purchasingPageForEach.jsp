@@ -13,6 +13,15 @@ import="dto.HistoryDTO"
 import="java.util.List"
 %>
 
+<!-- インポート部 -->
+<%@ page
+import="dto.LoginDTO"
+import="dto.TalentDTO"
+import="dto.UserDTO"
+import="dto.CommentDTO"
+import="java.util.*"
+%>
+
 <!-- セッション取得部 -->
 <%
 request.setCharacterEncoding("UTF-8");
@@ -20,14 +29,14 @@ LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
 List<ProductDTO> productList = (List<ProductDTO>)session.getAttribute("productList");
-List<HistoryDTO> historyList = (List<HistoryDTO>)session.getAttribute("historyList");
-
+List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>芸能人個別購買ページ</title>
+
 </head>
 <body>
 
@@ -35,6 +44,30 @@ List<HistoryDTO> historyList = (List<HistoryDTO>)session.getAttribute("historyLi
 <br>
 <a href="/komimi-chan-t-1/PurchasingPageForAll">芸能人購買ページ一覧</a><br>
 <a href="/komimi-chan-t-1/TalentInfo">芸能人情報ページへ</a><br>
+
 <a href="/komimi-chan-t-1/Main">メイン</a><br>
+<form action="/komimi-chan-t-1/PaymentPage" method="post">
+	<input  type="submit" value="SendMain" name="select">SendMain<br>
+</form>
+<%List<ProductDTO>purchasingList = new ArrayList<>(); %>
+<%for(ProductDTO productDTO:productList){ %>
+<form action="/komimi-chan-t-1/PurchasingPageForEach" method="post">
+	<img src="<%= request.getContextPath()+"/img/" + productDTO.getProductImg() %>" width="150"><br>
+	<%= "商品名："+productDTO.getProductName() %><br>
+	<%= "ジャンル："+productDTO.getProductType() %><br>
+	<%= "価格："+productDTO.getProductPrice() %>
+	<input  type="submit" value=productDTO name="product">SendMain<br>
+</form>
+<%} %>
+
+<%if(cart!=null){ %>
+現在のカートの中身
+<%int cartTotalPrice=0; %>
+<%for(ProductDTO productDTO:cart) {%>
+	<%=productDTO %>
+	<% cartTotalPrice+=productDTO.getProductPrice(); %>
+<% } %>
+<% } %>
+
 </body>
 </html>

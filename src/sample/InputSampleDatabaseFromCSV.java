@@ -91,7 +91,7 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 	@Override
 	public boolean userRequest() {
 		// TODO 自動生成されたメソッド・スタブ
-		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\user_request.csv"; // 入力ファイル
+		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\user_request0419.csv"; // 入力ファイル
 		  String line; // 読み込み行
 		  String[] requestAry; //3列
 		  ProcessInsert pi = new ProcessInsert();
@@ -125,7 +125,7 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 	@Override
 	public boolean userPurchaseHistory() {
 		// TODO 自動生成されたメソッド・スタブ
-		String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\user_history.csv"; // 入力ファイル
+		String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\user_purchase_history0419.csv"; // 入力ファイル
 		  String line; // 読み込み行
 		  String[] historyAry; //3列
 		  ProcessInsert pi = new ProcessInsert();
@@ -243,7 +243,7 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 	@Override
 	public boolean ProductByTalent() {
 		// TODO 自動生成されたメソッド・スタブ
-		String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\product_talent.csv"; // 入力ファイル
+		String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\product_by_talent0419.csv"; // 入力ファイル
 		  String line; // 読み込み行
 		  String[] productAry; //3列
 		  ProcessInsert pi = new ProcessInsert();

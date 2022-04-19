@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.ProcessFind;
 import dto.CommentDTO;
+import dto.ProductDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
 
@@ -25,19 +26,24 @@ public class MainProcessSwitch extends HttpServlet {
 		HttpSession session = request.getSession();
 		CommentDTO commentDTO = new CommentDTO();
 		List<UserDTO> userList = new ArrayList<>();
+		List<UserDTO> personOthersList = new ArrayList<>();
 		List<TalentDTO> talentList = new ArrayList<>();
 		List<CommentDTO> commentList = new ArrayList<>();
+		List<ProductDTO> productList = new ArrayList<>();
+
 		ProcessFind pf = new ProcessFind();
 		talentList=pf.findAllTalentDTOList();
 		userList=pf.findAllPersonOthersList();
-
+		personOthersList=pf.findAllPersonOthersList();
+		productList=pf.findAllProductDTOList();
 		commentList=pf.findAllCommentDTOList();
 
         session.setAttribute("commentDTO", commentDTO);
         session.setAttribute("userList", userList);
+        session.setAttribute("personOthersList", personOthersList);
         session.setAttribute("talentList", talentList);
         session.setAttribute("commentList", commentList);
-
+        session.setAttribute("productAllList", productList);
         String path= "";
         switch(select) {
         	case "main":

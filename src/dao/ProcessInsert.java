@@ -126,7 +126,7 @@ public class ProcessInsert implements ProcessInsertInterface {
 			pstm.setString(3, productDTO.getProductType());
 			pstm.setString(4, productDTO.getProductName());
 			pstm.setInt(5, productDTO.getProductPrice());
-			pstm.setDate(6, productDTO.getRegistrationDate());
+			pstm.setDate(6, null);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,12 +139,12 @@ public class ProcessInsert implements ProcessInsertInterface {
 	public boolean insertHistoryDTO(HistoryDTO historyDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
-		String sql = "INSERT INTO user_purchase_history(user_id, product_id, registration_data) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO user_purchase_history(user_id, product_id, registration_date) VALUES (?, ?, ?)";
 		try (Connection conn = dbc.getConnection();
 			PreparedStatement pstm = conn.prepareStatement(sql)) {
 			pstm.setString(1, historyDTO.getUserId());
 			pstm.setString(2, historyDTO.getProductId());
-			pstm.setDate(3, historyDTO.getRegistrationDate());
+			pstm.setDate(3, null);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

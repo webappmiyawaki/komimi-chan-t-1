@@ -10,7 +10,7 @@ import="dto.CommentDTO"
 import="dto.RequestDTO"
 import="dto.ProductDTO"
 import="dto.HistoryDTO"
-import="java.util.*"
+import="java.util.List"
 %>
 
 <!-- セッション取得部 -->
@@ -19,7 +19,7 @@ request.setCharacterEncoding("UTF-8");
 LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
-Map<String,TalentDTO>talentMap=(Map<String,TalentDTO>)session.getAttribute("talentMap");
+Map<String,TalentDTO>talentMap=(Map<String,TalentDTO>session.getAttribute("talentMap");
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
 %>
@@ -58,14 +58,15 @@ if(loginDTO==null||loginDTO.getId()==""){
 	<br>
 	<h1>好きなタレント一覧</h1>
 	<form action="/komimi-chan-t-1/TalentInfo" method="post">
-	<%TalentDTO talent=null;%>
-	<% talent=talentMap.get(userDTO.getUserFavoriteTalent01()); %>
-	<% if(talent!=null){ %>
-		<img src="<%= request.getContextPath()+"/img/" + talent.getTalentImgAddress() %>" width="150"><br>
-		<%= "コンビ名:"+talent.getTalentGroupName() %><br>
-		<%= "favorite01:"+talent.getTalentName() %><br>
-	<% } %>
+	<% for(TalentDTO talentDTO:talentList){
+		if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent01())){%>
 
+				<img src="<%= request.getContextPath()+"/img/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+				<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
+				<%= "favorite01:"+talentDTO.getTalentName() %><br>
+
+	<%  }%>
+	<% } %>
 	<% for(CommentDTO commentDTO:commentList){%>
 	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
 		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent01())){%>
@@ -73,7 +74,82 @@ if(loginDTO==null||loginDTO.getId()==""){
 		<%  }%>
 		<% } %>
 	<% } %>
-	<input  type="submit" value=<%= talent %> name="talentDTO">ボタン<br>
+	<input  type="submit" value=talentDTO name="talentDTO">ボタン<br>
+	</form>
+	<br>
+
+	<form action="/komimi-chan-t-1/TalentInfo" method="post">
+	<% for(TalentDTO talentDTO:talentList){ %>
+	<%	if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent02())){%>
+							<img src="<%= request.getContextPath()+"/img/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+				<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
+				<%= "favorite02:"+talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent02())){%>
+				favorite02comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
+	<input  type="submit" value=talentDTO name="talentDTO">ボタン<br>
+	</form>
+	<br>
+	<form action="/komimi-chan-t-1/TalentInfo" method="post">
+	<% for(TalentDTO talentDTO:talentList){ %>
+	<%	if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent03())){%>
+										<img src="<%= request.getContextPath()+"/img/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+				<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
+				<%= "favorite03:"+talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent03())){%>
+				favorite03comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
+	<input  type="submit" value=talentDTO name="talentDTO">ボタン<br>
+	</form>
+	<br>
+
+	<form action="/komimi-chan-t-1/TalentInfo" method="post">
+	<% for(TalentDTO talentDTO:talentList){ %>
+	<%	if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent04())){%>
+				<img src="<%= request.getContextPath()+"/img/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+				<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
+				<%= "favorite04:"+talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent04())){%>
+				favorite04comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
+	<input  type="submit" value=talentDTO name="talentDTO">ボタン<br>
+	</form>
+	<br>
+
+	<form action="/komimi-chan-t-1/TalentInfo" method="post">
+	<% for(TalentDTO talentDTO:talentList){ %>
+	<%	if(talentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent05())){%>
+	<img src="<%= request.getContextPath()+"/img/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+	<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
+	<%= "favorite05:"+talentDTO.getTalentName() %><br>
+	<%  }%>
+	<% } %>
+	<% for(CommentDTO commentDTO:commentList){%>
+	<%	if(commentDTO.getUserId().equals(userDTO.getUserId())){%>
+		<%	if(commentDTO.getTalentId().equals(userDTO.getUserFavoriteTalent05())){%>
+				favorite05comment:<%= commentDTO.getComment() %><br>
+		<%  }%>
+		<% } %>
+	<% } %>
+	<input  type="submit" value=talentDTO name="talentDTO">ボタン<br>
 	</form>
 	<br>
 
@@ -86,12 +162,11 @@ if(loginDTO==null||loginDTO.getId()==""){
 		ユーザー名：<%= user.getUserName() %><br>
 		<br>
 		<%if( user.getUserFavoriteTalent01()!=null){ %>
-			<% talent=talentMap.get(userDTO.getUserFavoriteTalent01()); %>
-			<% if(talent!=null){ %>
-				<%= "コンビ名:"+talent.getTalentGroupName() %><br>
-				<%= "favorite01:"+talent.getTalentName() %><br>
+			<% for(TalentDTO talentDTO:talentList){
+				if(talentDTO.getTalentId().equals(user.getUserFavoriteTalent01())){%>
+					othersfavorite01:<%= talentDTO.getTalentName() %><br>
+				<%  }%>
 			<% } %>
-
 			<% for(CommentDTO commentDTO:commentList){%>
 			<%	if(commentDTO.getUserId().equals(user.getUserId())){%>
 				<%	if(commentDTO.getTalentId().equals(user.getUserFavoriteTalent01())){%>
@@ -99,7 +174,6 @@ if(loginDTO==null||loginDTO.getId()==""){
 				<%  }%>
 				<% } %>
 			<% } %>
-
 		<% } %>
 
 		<br>

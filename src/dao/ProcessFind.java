@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import dto.CommentDTO;
+import dto.HistoryDTO;
 import dto.LoginDTO;
 import dto.ProductDTO;
 import dto.RequestDTO;
@@ -24,10 +25,9 @@ public class ProcessFind implements ProcessFindInterface {
 		// TODO 自動生成されたメソッド・スタブ
 		DBConnector dbc = new DBConnector();
 		String sql = "SELECT * FROM user_base_info WHERE user_name LIKE ? AND user_password LIKE ?";
-		Random rnd = new Random();
 		try (Connection conn = dbc.getConnection();
 				PreparedStatement pstm = conn.prepareStatement(sql)) {
-			pstm.setString(1, loginDTO.getId());
+			pstm.setString(1, loginDTO.getName());
 			pstm.setString(2, loginDTO.getPassword());
 			ResultSet rs = pstm.executeQuery();
 			rs.next();
@@ -49,7 +49,7 @@ public class ProcessFind implements ProcessFindInterface {
 		UserDTO userDTO;
 		try (Connection conn = dbc.getConnection();
 				PreparedStatement pstm = conn.prepareStatement(sql)) {
-			pstm.setString(1, loginDTO.getId());
+			pstm.setString(1, loginDTO.getName());
 			pstm.setString(2, loginDTO.getPassword());
 			ResultSet rs = pstm.executeQuery();
 			rs.next();
@@ -62,7 +62,7 @@ public class ProcessFind implements ProcessFindInterface {
 					.userType(UserType.valueOf(rs.getString("user_type").toUpperCase()))
 					.build();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("user base info");
 			return null;
 		}
 
@@ -315,18 +315,20 @@ public class ProcessFind implements ProcessFindInterface {
         			pstm2.setString(1, userDTO.getUserId());
         			pstm2.setString(2, userDTO.getUserPass());
         			ResultSet rs2 = pstm2.executeQuery();
-        			rs2.next();
-        			userDTO.setUserFavoriteTalent01(rs2.getString("talent_id"));
-        			rs2.next();
-        			userDTO.setUserFavoriteTalent02(rs2.getString("talent_id"));
-        			rs2.next();
-        			userDTO.setUserFavoriteTalent03(rs2.getString("talent_id"));
-        			rs2.next();
-        			userDTO.setUserFavoriteTalent04(rs2.getString("talent_id"));
-        			rs2.next();
-        			userDTO.setUserFavoriteTalent05(rs2.getString("talent_id"));
-        		} catch (SQLException e) {
-        			e.printStackTrace();
+        			StringBuilder sb= new StringBuilder("");
+        			while(rs2.next()) {
+        				sb.append(rs2.getString("talent_id")+",");
+        			};
+        			if(sb!=null) {
+	        			String[] ary= sb.toString().split(",");
+	        			userDTO.setUserFavoriteTalent01(ary[0]);
+	        			userDTO.setUserFavoriteTalent02(ary[1]);
+	        			userDTO.setUserFavoriteTalent03(ary[2]);
+	        			userDTO.setUserFavoriteTalent04(ary[3]);
+	        			userDTO.setUserFavoriteTalent05(ary[4]);
+        			}
+        		} catch (SQLException|ArrayIndexOutOfBoundsException e) {
+        			System.out.println("お気に入りのタレント数不足");
         			//お気に入り無しで戻り値
         		}
         		userList.add(userDTO);
@@ -337,6 +339,56 @@ public class ProcessFind implements ProcessFindInterface {
 		}
 
 		return userList;
+	}
+
+	@Override
+	public List<HistoryDTO> findAnyHistoryDTOList(UserDTO userDTO) {
+		// TODO 自動生成されたメソッド・スタブ
+		List<HistoryDTO> historyList= new ArrayList<>();
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM user_purchase_history WHERE user_id =  LIKE ?";
+		try (Connection conn = dbc.getConnection();
+				PreparedStatement pstm = conn.prepareStatement(sql)) {
+			pstm.setString(1, userDTO.getUserId());
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+            	historyList.add(HistoryDTO.builder()
+            			.productId(rs.getString("product_id"))
+            			.build());
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		return historyList;
+	}
+
+	@Override
+	public List<ProductDTO> findAllProductDTOList() {
+		// TODO 自動生成されたメソッド・スタブ
+		List<ProductDTO> productList = new ArrayList<>();
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM user_request";
+		Random rnd = new Random();
+		try (Connection conn = dbc.getConnection();
+			Statement stmt = conn.createStatement();) {
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+            	productList.add(ProductDTO.builder()
+            			.productId(rs.getString("product_id"))
+            			.talentId(rs.getString("talent_id"))
+            			.productType(rs.getString("product_type"))
+            			.productName(rs.getString("product_name"))
+            			.productPrice(Integer.parseInt(rs.getString("product_price")))
+            			.registrationDate(null)
+            			.build());
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return productList;
 	}
 
 }

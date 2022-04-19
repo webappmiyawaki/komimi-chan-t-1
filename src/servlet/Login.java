@@ -2,7 +2,9 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +25,12 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String select = request.getParameter("select");
-		String userId = request.getParameter("userId");
+		String userName = request.getParameter("username");
 		String userPass= request.getParameter("userPass");
 
 		HttpSession session = request.getSession();
 		LoginDTO loginDTO = LoginDTO.builder()
-				.id(userId)
+				.name(userName)
 				.password(userPass)
 				.build();
 
@@ -52,16 +54,23 @@ public class Login extends HttpServlet {
 				break;
 			}
 			userDTO = pf.findPersonMyself(loginDTO);
+			talentList=pf.findAllTalentDTOList();
 		}else {
         	path= "login.jsp";
         	loginDTO = LoginDTO.builder().build();
         	talentList=null;
 //			response.sendRedirect(path);
 		}
-
+		Map<String,TalentDTO>talentMap=new HashMap<>();
+		String key="";
+		for(TalentDTO talentDTO:talentList) {
+			key=talentDTO.getTalentId();
+			talentMap.put(key,talentDTO);
+		}
 		session.setAttribute("login", loginDTO);
 		session.setAttribute("userDTO", userDTO);
         session.setAttribute("talentList", talentList);
+        session.setAttribute("talentMap", talentMap);
 		request.getRequestDispatcher(path).forward(request, response);
 
 	}

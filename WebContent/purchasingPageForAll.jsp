@@ -33,10 +33,13 @@ List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList")
 <!--タレントリスト表示 -->
 <h1>タレントリスト</h1>
 <%for(TalentDTO talent:talentList){ %>
+<form action="/komimi-chan-t-1/PurchasingPageForEach" method="post">
 <img src="<%= request.getContextPath()+"/img/" + talent.getTalentImgAddress() %>" width="150"><br>
-<%= "名前："+talent.getTalentName() %><br>
-<%= "コンビ名："+talent.getTalentGroupName() %><br>
-<%= "お気に入り数："+talent.getTalentFavoriteCount() %>
+	<%= "名前："+talent.getTalentName() %><br>
+	<%= "コンビ名："+talent.getTalentGroupName() %><br>
+	<%= "お気に入り数："+talent.getTalentFavoriteCount() %>
+	<input  type="submit" value=<%= talent %> name="talentDTO">TalentDTO<br>
+</form>
 <br><br>
 <%} %>
 <br>
