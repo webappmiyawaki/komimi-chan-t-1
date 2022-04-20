@@ -59,7 +59,7 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 	<%for(TalentDTO talentDTO:userDTO.getUserFavoriteTalentList()){ %>
 	<form action="/komimi-chan-t-1/TalentInfo" method="post">
 	<% if(talentDTO!=null){ %>
-		<img src="<%= request.getContextPath()+"/img/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+		<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
 		<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
 		<%= "favorite:"+talentDTO.getTalentName() %><br>
 		<%= "comment:"+userDTO.getCommentDTOList().get(counter).getComment() %><br>
@@ -75,7 +75,7 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 	<h1>おすすめユーザー</h1>
 	<% for(int i=0;i<5;i++){ %>
 	<form action="/komimi-chan-t-1/PersonOthers" method="post">
-		画像：<%= personOthersList.get(i).getInfo03() %><br>
+		<img src="<%= request.getContextPath()+"/img_user_logo/" + personOthersList.get(i).getInfo03() %>" width="150"><br>
 		名前：<%= personOthersList.get(i).getUserName() %><br>
 	<input  type="submit" value=<%= personOthersList.get(i).getUserId() %> name="personOthersID"><br>
 	</form>

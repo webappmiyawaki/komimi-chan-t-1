@@ -35,7 +35,7 @@ UserDTO personOthers = (UserDTO)session.getAttribute("personOthersDTO");
 <br>
 
 <h1>ユーザー</h1>
-画像：<%= personOthers.getInfo03() %><br>
+<img src="<%= request.getContextPath()+"/img_user_logo/" + personOthers.getInfo03() %>" width="150"><br>
 名前：<%= personOthers.getUserName() %><br>
 <br>
 

@@ -7,7 +7,7 @@ import="dto.LoginDTO"
 import="dto.TalentDTO"
 import="dto.UserDTO"
 import="dto.ProductDTO"
-import="java.util.List"
+import="java.util.*"
 %>
 
 <!-- セッション取得部 -->
@@ -16,6 +16,7 @@ request.setCharacterEncoding("UTF-8");
 LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
+Collections.shuffle(talentList);
 %>
 
 <!DOCTYPE html>
@@ -33,12 +34,12 @@ List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList")
 <!--タレントリスト表示 -->
 <h1>タレントリスト</h1>
 <%for(TalentDTO talent:talentList){ %>
-<form action="/komimi-chan-t-1/PurchasingPageForEach" method="post">
-<img src="<%= request.getContextPath()+"/img/" + talent.getTalentImgAddress() %>" width="150"><br>
+<form action="/komimi-chan-t-1/TalentInfo" method="post">
+<img src="<%= request.getContextPath()+"/img_talent/" + talent.getTalentImgAddress() %>" width="150"><br>
 	<%= "名前："+talent.getTalentName() %><br>
 	<%= "コンビ名："+talent.getTalentGroupName() %><br>
-	<%= "お気に入り数："+talent.getTalentFavoriteCount() %>
-	<input  type="submit" value=<%= talent %> name="talentDTO">TalentDTO<br>
+	<%= "お気に入り数："+talent.getTalentFavoriteCount() %><br>
+	<input  type="submit" value=<%= talent.getTalentId() %> name="talentDTO">TalentDTO<br>
 </form>
 <br><br>
 <%} %>

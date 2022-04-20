@@ -18,7 +18,7 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 	public boolean userBaseInfo() {
 		  // CSVファイルを読み込み1行ずつ出力
 //		  BufferedReader br = null;
-		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\userdata0418.csv"; // 入力ファイル
+		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\user_base_info0420.csv"; // 入力ファイル
 		  String line; // 読み込み行
 		  String[] userAry; //11列
 		  ProcessInsert pi = new ProcessInsert();
@@ -56,7 +56,7 @@ public class InputSampleDatabaseFromCSV implements InputSampleDatabaseFromCSVInt
 	public boolean userFavorite() {
 		  // CSVファイルを読み込み1行ずつ出力
 //		  BufferedReader br = null;
-		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\commentdata0418.csv"; // 入力ファイル
+		  String file_name = "C:\\pleiades\\workspace\\komimi-chan-t-1\\sql\\user_favorite0420.csv"; // 入力ファイル
 		  String line; // 読み込み行
 		  String[] commentAry; //3列
 		  ProcessInsert pi = new ProcessInsert();

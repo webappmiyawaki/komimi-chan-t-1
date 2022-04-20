@@ -49,7 +49,7 @@ public interface ProcessFindInterface {
 	 * @param UserDTO
 	 * @return List<UserDTO> or null
 	 */
-	List<UserDTO> findPersonOthersList(CommentDTO commentDTO);
+	List<UserDTO> findPersonOthersList();
 
 	/**
 	 * 似ているユーザー情報取得
@@ -112,7 +112,7 @@ public interface ProcessFindInterface {
 	 * @param void
 	 * @return List<RequestDTO> or null
 	 */
-	List<ProductDTO> findAnyProductDTOList(TalentDTO talentDTO);
+	List<ProductDTO> findAnyProductDTOList(String talentDTO);
 
 	/**
 	 * 全ての商品リスト取得

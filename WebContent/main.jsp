@@ -151,7 +151,7 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 			<%for(int i=0;i<10;i++){ %>
             <li><a href="#">
             <time datetime="2021-12-23"></time>
-            <img src="<%= request.getContextPath()+"/img/" + talentList.get(i).getTalentImgAddress() %>" width="75">
+            <img src="<%= request.getContextPath()+"/img_talent/" + talentList.get(i).getTalentImgAddress() %>" width="75">
             <%= talentList.get(i).getTalentName() %>
             <%= "お気に入り数："+talentList.get(i).getTalentFavoriteCount()+"人" %></a>
             </li>
@@ -163,7 +163,7 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 			<%for(int i=10;i<20;i++){ %>
             <li><a href="#">
             <time datetime="2021-12-23"></time>
-            <img src="<%= request.getContextPath()+"/img/" + talentList.get(i).getTalentImgAddress() %>" width="75">
+            <img src="<%= request.getContextPath()+"/img_talent/" + talentList.get(i).getTalentImgAddress() %>" width="75">
             <%= talentList.get(i).getTalentName() %>
             <%= "お気に入り数："+talentList.get(i).getTalentFavoriteCount()+"人" %></a>
             </li>

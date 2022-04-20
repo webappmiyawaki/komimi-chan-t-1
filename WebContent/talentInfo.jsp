@@ -38,7 +38,7 @@ List<CommentDTO> commentTalentList = (List<CommentDTO>)session.getAttribute("com
 <a href="/komimi-chan-t-1/PersonMyself">マイページ</a><br>
 有名人情報<br>
 <br>
-<form action="/komimi-chan-t-1/TalentInfoProcessSwitch" method="post">
+<form action="/komimi-chan-t-1/PurchasingPageForEach" method="post">
 <input  type="submit" value="purchasingPageForEach" name="select">芸能人個別購買ページ<br>
 <input  type="submit" value="personOthers" name="select">personOthers<br>
 </form>
@@ -63,22 +63,8 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
-ticktok<br>
-<blockquote
-class="tiktok-embed"
-cite="https://www.tiktok.com/@uespiiiii.1115"
-data-unique-id="uespiiiii.1115"
-data-embed-type="creator"
-style="max-width: 720px; min-width: 288px;" >
-<section>
- <a target="_blank" href="https://www.tiktok.com/@uespiiiii.1115?refer=creator_embed">@uespiiiii.1115</a>
-</section>
-</blockquote>
-<script async src="https://www.tiktok.com/embed.js"></script>
-
-
 	<h1>タレント</h1>
-	画像：<%= talentDTO.getTalentImgAddress() %><br>
+	<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
 	名前：<%= talentDTO.getTalentName() %><br>
 	コンビ名：<%= talentDTO.getTalentGroupName() %><br>
 	出身地：<%= talentDTO.getTalentBirthPlace() %><br>

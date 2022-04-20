@@ -96,15 +96,14 @@ public class ProcessFind implements ProcessFindInterface {
 	}
 
 	@Override
-	public List<UserDTO> findPersonOthersList(CommentDTO commentDTO) {
+	public List<UserDTO> findPersonOthersList() {
 		// TODO 自動生成されたメソッド・スタブ
 		List<UserDTO> userList = new ArrayList<>();
 		DBConnector dbc = new DBConnector();
-		String sql = "SELECT * FROM user_base_info WHERE user_id LIKE ?";
+		String sql = "SELECT * FROM user_base_info ORDER BY random() limit 5;";
 		try (Connection conn = dbc.getConnection();
-				PreparedStatement pstm = conn.prepareStatement(sql)) {
-			pstm.setString(1, commentDTO.getUserId());
-			ResultSet rs = pstm.executeQuery();
+				Statement stmt = conn.createStatement();) {
+			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
             	userList.add(UserDTO.builder()
     					.userId(rs.getString("user_id"))
@@ -259,14 +258,14 @@ public class ProcessFind implements ProcessFindInterface {
 	}
 
 	@Override
-	public List<ProductDTO> findAnyProductDTOList(TalentDTO talentDTO) {
+	public List<ProductDTO> findAnyProductDTOList(String talentDTO) {
 		// TODO 自動生成されたメソッド・スタブ
 		List<ProductDTO> productList = new ArrayList<>();
 		DBConnector dbc = new DBConnector();
 		String sql = "SELECT * FROM product_by_talent WHERE talent_id LIKE ?";
 		try (Connection conn = dbc.getConnection();
 				PreparedStatement pstm = conn.prepareStatement(sql)) {
-			pstm.setString(1, talentDTO.getTalentId());
+			pstm.setString(1, talentDTO);
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {
             	productList.add(ProductDTO.builder()

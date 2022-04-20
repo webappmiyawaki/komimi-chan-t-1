@@ -102,7 +102,8 @@ public class Login extends HttpServlet {
 //		ProcessFind pf = new ProcessFind();
 //		talentList=pf.findAllTalentDTOList();
 //		userList=pf.findAllPersonOthersList();
-		personOthersList=pf.findAllPersonOthersList();
+//		personOthersList=pf.findAllPersonOthersList();
+		personOthersList=pf.findPersonOthersList();
 //		productList=pf.findAllProductDTOList();
 //		commentList=pf.findAllCommentDTOList();
 

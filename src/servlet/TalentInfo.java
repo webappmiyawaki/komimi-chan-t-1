@@ -26,6 +26,7 @@ public class TalentInfo extends HttpServlet {
 		ProcessFind pf = new ProcessFind();
 		session.setAttribute("talentDTO", pf.findTalentDTO(talentId));
 		session.setAttribute("commentTalentList", pf.findCommentTalentList(talentId));
+		session.setAttribute("talentProductList",pf.findAnyProductDTOList(talentId));
 		doGet(request, response);
 	}
 }

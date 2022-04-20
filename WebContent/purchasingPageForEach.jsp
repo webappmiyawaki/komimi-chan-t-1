@@ -28,7 +28,7 @@ request.setCharacterEncoding("UTF-8");
 LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
-List<ProductDTO> productList = (List<ProductDTO>)session.getAttribute("productList");
+List<ProductDTO> productList = (List<ProductDTO>)session.getAttribute("talentProductList");
 List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
 %>
 <!DOCTYPE html>
@@ -49,14 +49,27 @@ List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
 <form action="/komimi-chan-t-1/PaymentPage" method="post">
 	<input  type="submit" value="SendMain" name="select">SendMain<br>
 </form>
+
+<% if(cart!=null){ %>
+cart   : <%=cart.size() %>件
+<% int total=0; %>
+<% for(ProductDTO productDTO:cart){ %>
+	<% total+=productDTO.getProductPrice(); %>
+<% } %>
+合計金額: <%=total %>円
+<% } %>
+<br>
+<br>
+<br>
+
 <%List<ProductDTO>purchasingList = new ArrayList<>(); %>
 <%for(ProductDTO productDTO:productList){ %>
 <form action="/komimi-chan-t-1/PurchasingPageForEach" method="post">
-	<img src="<%= request.getContextPath()+"/img/" + productDTO.getProductImg() %>" width="150"><br>
+	<img src="<%= request.getContextPath()+"/img_product/" + productDTO.getProductImg() %>" width="150"><br>
 	<%= "商品名："+productDTO.getProductName() %><br>
 	<%= "ジャンル："+productDTO.getProductType() %><br>
-	<%= "価格："+productDTO.getProductPrice() %>
-	<input  type="submit" value=productDTO name="product">SendMain<br>
+	<%= "価格："+productDTO.getProductPrice() %><br>
+	<input  type="submit" value=<%= productDTO.getProductId() %> name="productId"><br>
 </form>
 <%} %>
 

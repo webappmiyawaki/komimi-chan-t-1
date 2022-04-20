@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ProcessFind;
 import dto.ProductDTO;
-import dto.TalentDTO;
 
 @WebServlet("/PurchasingPageForEach")
 public class PurchasingPageForEach extends HttpServlet {
@@ -22,9 +20,6 @@ public class PurchasingPageForEach extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = "purchasingPageForEach.jsp";
-		HttpSession session = request.getSession();
-		ProcessFind pf = new ProcessFind();
-		session.setAttribute("productList",pf.findAnyProductDTOList((TalentDTO)session.getAttribute("talentDTO")));
         response.sendRedirect(path);
 //		request.getRequestDispatcher(path).forward(request, response);
 	}
@@ -32,14 +27,25 @@ public class PurchasingPageForEach extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		String productId = request.getParameter("productId");
+
 		HttpSession session = request.getSession();
-		session.setAttribute("talentDTO", (TalentDTO)request.getAttribute("talentDTO"));
-		List<ProductDTO> productCart = new ArrayList<>();
-		ProductDTO productDTO = (ProductDTO)request.getAttribute("product");
-		if(productDTO!=null) {
-			productCart.add(productDTO);
+		List<ProductDTO> productList = (List<ProductDTO>)session.getAttribute("talentProductList");
+
+		List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
+		if(cart==null) {
+			cart= new ArrayList<>();
 		}
-		session.setAttribute("cart", productCart);
+		if(productId!=null) {
+			for(ProductDTO productDTO:productList) {
+				if(productDTO.getProductId().equals(productId)) {
+					cart.add(productDTO);
+					break;
+				}
+			}
+		}
+		session.setAttribute("cart",cart);
 		doGet(request, response);
 	}
 

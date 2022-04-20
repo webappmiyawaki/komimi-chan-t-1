@@ -6,7 +6,7 @@ public class ReadDataFromCSV {
 //		cdb.userBaseInfo();
 //		cdb.TalentBaseInfo();
 //		cdb.userRequest();
-//		cdb.userFavorite();
+		cdb.userFavorite();
 //		cdb.userPurchaseHistory();
 //		cdb.ProductByTalent();
 	}
