@@ -271,6 +271,7 @@ public class ProcessFind implements ProcessFindInterface {
             	productList.add(ProductDTO.builder()
             			.productId(rs.getString("product_id"))
             			.talentId(rs.getString("talent_id"))
+            			.productImg(rs.getString("product_img"))
             			.productType(rs.getString("product_type"))
             			.productName(rs.getString("product_name"))
             			.productPrice(Integer.parseInt(rs.getString("product_price")))
@@ -283,6 +284,32 @@ public class ProcessFind implements ProcessFindInterface {
 		}
 		return productList;
 	}
+
+	@Override
+	public ProductDTO findAnyProductDTO(String productID) {
+		// TODO 自動生成されたメソッド・スタブ
+		DBConnector dbc = new DBConnector();
+		String sql = "SELECT * FROM product_by_talent WHERE product_id LIKE ?";
+		try (Connection conn = dbc.getConnection();
+				PreparedStatement pstm = conn.prepareStatement(sql)) {
+			pstm.setString(1, productID);
+			ResultSet rs = pstm.executeQuery();
+			rs.next();
+			return ProductDTO.builder()
+            			.productId(rs.getString("product_id"))
+            			.talentId(rs.getString("talent_id"))
+            			.productImg(rs.getString("product_img"))
+            			.productType(rs.getString("product_type"))
+            			.productName(rs.getString("product_name"))
+            			.productPrice(Integer.parseInt(rs.getString("product_price")))
+            			.registrationDate(null)
+            			.build();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 
 	@Override
 	public List<UserDTO> findAllPersonOthersList() {
@@ -358,7 +385,6 @@ public class ProcessFind implements ProcessFindInterface {
             }
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
 
 		return historyList;

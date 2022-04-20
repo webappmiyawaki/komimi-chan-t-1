@@ -37,17 +37,13 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 マイページ<br>
 <br>
 <a href="/komimi-chan-t-1/PersonMyselfPurchaseHistory">購入履歴</a>
-<form action="/komimi-chan-t-1/PersonMyselfProcessSwitch" method="post">
-<input  type="submit" value="personOthers" name="select">personOthers<br>
-<input  type="submit" value="talentInfo" name="select">talentInfo<br>
-</form>
 <br>
 
 	<h1>ユーザー情報</h1>
+	<img src="<%= request.getContextPath()+"/img_user_logo/" + userDTO.getInfo03() %>" width="350"><br>
 	name:<%= userDTO.getUserName() %><br>
 	pass:<%= userDTO.getUserPass() %><br>
 	type:<%= userDTO.getUserType() %><br>
-	img :<%= userDTO.getInfo03() %><br>
 
 	<br>
 	<h1>好きなタレント一覧</h1>
@@ -55,8 +51,12 @@ List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentLi
 	<%
 	TalentDTO talent=null;
 	int counter=0;
+
+	List<TalentDTO> userTalentList = userDTO.getUserFavoriteTalentList();
+	Collections.shuffle(userTalentList);
+	Collections.shuffle(personOthersList);
 	%>
-	<%for(TalentDTO talentDTO:userDTO.getUserFavoriteTalentList()){ %>
+	<%for(TalentDTO talentDTO:userTalentList){ %>
 	<form action="/komimi-chan-t-1/TalentInfo" method="post">
 	<% if(talentDTO!=null){ %>
 		<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>

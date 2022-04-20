@@ -53,7 +53,7 @@ create table user_favorite
         constraint user_favorite_talent_base_info_talent_id_fk
             references talent_base_info
             on update cascade on delete cascade,
-    user_comment varchar(500)
+    user_comment varchar(1000)
 );
 
 create table product_by_talent

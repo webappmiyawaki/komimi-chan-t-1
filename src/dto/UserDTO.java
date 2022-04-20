@@ -33,4 +33,8 @@ public class UserDTO implements Serializable{
 
 	//commentList
 	private List<CommentDTO> commentDTOList;
+
+	//historyDTO 0421追加
+	private List<HistoryDTO> historyDTOList;
+	private List<ProductDTO> productDTOList;
 }

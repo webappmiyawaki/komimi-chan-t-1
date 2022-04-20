@@ -17,29 +17,56 @@ import="java.util.List"
 <%
 request.setCharacterEncoding("UTF-8");
 LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
-UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
+UserDTO myUserDTO = (UserDTO)session.getAttribute("myUserDTO");
 List<ProductDTO> productList = (List<ProductDTO>)session.getAttribute("productList");
+List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
 %>
 
 <html>
 <head>
 <meta charset="UTF-8">
 
-<title>sample</title>
+<title>payment</title>
 </head>
 <body>
-SendMain<br>
-<%String sendParam01 ="591"; %>
-<%String sendParam02 ="2000"; %>
-<a href="http://localhost:8080/RecieveApp/RecieveMain.jsp?key1=<%=sendParam01 %>&key2=<%=sendParam02 %>">送る</a>
+<%= myUserDTO.getUserName() %>さん<br>
 <br>
-<a href="http://localhost:5050/view/test?key1=<%=sendParam01 %>&key2=<%=sendParam02 %>">go送る</a>
-
-<form action="/komimi-chan-t-1/PurchasingPageForEach" method="post">
-	<input  type="submit" value="SendMain" name="select">SendMain<br>
-</form>
+決済ページ<br>
 
 <% String result = request.getParameter("key4"); %><br>
-result:<%=result %>
+result:<%=result %><br>
+
+購買品商品一覧
+<% int total=0; %>
+<% if(cart!=null){ %>
+cart   : <%=cart.size() %>件<br>
+
+<% for(ProductDTO productDTO:cart){ %>
+	<% total+=productDTO.getProductPrice(); %><br>
+<% } %>
+合計金額: <%=total %>円
+<% } %>
+
+<br>
+<a href="http://localhost:5050/view/test?key1=<%=myUserDTO.getUserId() %>&key2=<%= total %>">決済</a>
+<br>
+<br>
+<form action="/komimi-chan-t-1/PersonMyself" method="post">
+	<input  type="submit" value="マイページ" name="select">マイページへ<br>
+</form>
+
+<br>
+<br>
+<%if(cart!=null){ %>
+現在のカートの中身<br><br>
+<%int cartTotalPrice=0; %>
+<%for(ProductDTO productDTO:cart) {%>
+	<img src="<%= request.getContextPath()+"/img_product/" + productDTO.getProductImg() %>" width="150"><br>
+	名前：<%=productDTO.getProductName() %><br>
+	価格：<%=productDTO.getProductPrice() %><br>
+	<br>
+<% } %>
+<% } %>
+
 </body>
 </html>

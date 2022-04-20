@@ -123,6 +123,14 @@ public interface ProcessFindInterface {
 	List<ProductDTO> findAllProductDTOList();
 
 	/**
+	 * 購買履歴用商品リスト取得
+	 *
+	 * @param String
+	 * @return ProductDTO or null
+	 */
+	ProductDTO findAnyProductDTO(String productID);
+
+	/**
 	 * 個人の商品購買履歴
 	 * @param userDTO
 	 * @return List<HistoryDTO> or null

@@ -47,13 +47,14 @@ int counter=0;
 <%for(TalentDTO talentDTO:personOthers.getUserFavoriteTalentList()){ %>
 <form action="/komimi-chan-t-1/TalentInfo" method="post">
 <% if(talentDTO!=null){ %>
-	<img src="<%= request.getContextPath()+"/img/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+	<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
 	<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
 	<%= "favorite:"+talentDTO.getTalentName() %><br>
 	<%= "comment:"+userDTO.getCommentDTOList().get(counter).getComment() %><br>
 	<% counter++; %>
 <input  type="submit" value=<%= talentDTO.getTalentId() %> name="talentDTO"><br>
 </form>
+<br>
 <% } %>
 <% } %>
 

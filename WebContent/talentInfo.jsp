@@ -40,9 +40,19 @@ List<CommentDTO> commentTalentList = (List<CommentDTO>)session.getAttribute("com
 <br>
 <form action="/komimi-chan-t-1/PurchasingPageForEach" method="post">
 <input  type="submit" value="purchasingPageForEach" name="select">芸能人個別購買ページ<br>
-<input  type="submit" value="personOthers" name="select">personOthers<br>
 </form>
 <br>
+
+	<h1>タレント</h1>
+	<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+	名前：<%= talentDTO.getTalentName() %><br>
+	コンビ名：<%= talentDTO.getTalentGroupName() %><br>
+	出身地：<%= talentDTO.getTalentBirthPlace() %><br>
+	血液型：<%= talentDTO.getTalentBloodType() %><br>
+	お気に入り数：<%= talentDTO.getTalentFavoriteCount() %><br>
+	Twitter：<%= talentDTO.getTwitterAddress() %><br>
+	Youtube：<%= talentDTO.getYoutubeAddress() %><br>
+	<br>
 <br>
 <br>
 twitter<br>
@@ -63,17 +73,7 @@ frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
-	<h1>タレント</h1>
-	<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
-	名前：<%= talentDTO.getTalentName() %><br>
-	コンビ名：<%= talentDTO.getTalentGroupName() %><br>
-	出身地：<%= talentDTO.getTalentBirthPlace() %><br>
-	血液型：<%= talentDTO.getTalentBloodType() %><br>
-	お気に入り数：<%= talentDTO.getTalentFavoriteCount() %><br>
-	Twitter：<%= talentDTO.getTwitterAddress() %><br>
-	Youtube：<%= talentDTO.getYoutubeAddress() %><br>
 	Tiktok:<%= talentDTO.getTiktokAddress() %><br>
-	<br>
 
 	<!--コメントリスト表示 -->
 	<h1>コメントリスト</h1>

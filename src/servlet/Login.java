@@ -15,7 +15,9 @@ import javax.servlet.http.HttpSession;
 
 import dao.ProcessFind;
 import dto.CommentDTO;
+import dto.HistoryDTO;
 import dto.LoginDTO;
+import dto.ProductDTO;
 import dto.TalentDTO;
 import dto.UserDTO;
 import model.LoginCheck;
@@ -106,8 +108,12 @@ public class Login extends HttpServlet {
 		personOthersList=pf.findPersonOthersList();
 //		productList=pf.findAllProductDTOList();
 //		commentList=pf.findAllCommentDTOList();
-
-
+		myUserDTO.setHistoryDTOList(pf.findAnyHistoryDTOList(myUserDTO));
+		List<ProductDTO>historyProductDTOList = new ArrayList<>();
+		for(HistoryDTO historyDTO:myUserDTO.getHistoryDTOList()) {
+			historyProductDTOList.add(pf.findAnyProductDTO(historyDTO.getProductId()));
+		}
+		myUserDTO.setProductDTOList(historyProductDTOList);
 		//****使わなくなる
         session.setAttribute("commentDTO", commentDTO);
         session.setAttribute("userList", userList);
@@ -127,6 +133,7 @@ public class Login extends HttpServlet {
 
 		session.setAttribute("login", loginDTO);
 		session.setAttribute("userDTO", userDTO);
+		session.setAttribute("myUserDTO", myUserDTO);
         session.setAttribute("myTalentMap", myTalentMap);
       //*******
 
