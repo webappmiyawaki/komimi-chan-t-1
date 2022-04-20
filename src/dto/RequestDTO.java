@@ -17,6 +17,5 @@ import lombok.ToString;
 @Builder
 public class RequestDTO implements Serializable{
 	private String userId;
-	private String talentId;
-	private String request;
+	private String requestText;
 }

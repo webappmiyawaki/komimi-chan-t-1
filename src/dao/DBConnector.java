@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class DBConnector {
 	private static String driverName="org.postgresql.Driver";
-	private static String url="jdbc:postgresql://localhost:5432/komimi_sample";
+	private static String url="jdbc:postgresql://localhost:5432/komimi_chan_t_1";
 
 	private static String user="postgres";
 	private static String password="test";

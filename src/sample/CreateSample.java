@@ -27,31 +27,11 @@ public class CreateSample {
 	}
 
 	public TalentDTO createTalentDTO() {
-		return TalentDTO.builder()
-				.name(this.name+num)
-				.info01(null)
-				.info02(null)
-				.info03(null)
-				.info04(null)
-				.info05(null)
-				.info06(null)
-				.info07(null)
-				.info08(null)
-				.build();
+		return TalentDTO.builder().build();
 	}
 
 	public UserDTO createUserDTO() {
-		return UserDTO.builder()
-				.name(this.name+num)
-				.info01(null)
-				.info02(null)
-				.info03(null)
-				.info04(null)
-				.info05(null)
-				.info06(null)
-				.info07(null)
-				.info08(null)
-				.build();
+		return UserDTO.builder().build();
 	}
 
 	public CommentDTO createCommentDTO() {
@@ -65,8 +45,7 @@ public class CreateSample {
 	public RequestDTO createRequestDTO() {
 		return RequestDTO.builder()
 				.userId(this.name+num)
-				.talentId(null)
-				.request(null)
+				.requestText(null)
 				.build();
 	}
 }

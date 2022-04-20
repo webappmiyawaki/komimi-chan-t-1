@@ -8,6 +8,8 @@ import="dto.TalentDTO"
 import="dto.UserDTO"
 import="dto.CommentDTO"
 import="dto.RequestDTO"
+import="dto.ProductDTO"
+import="dto.HistoryDTO"
 import="java.util.List"
 %>
 
@@ -16,91 +18,47 @@ import="java.util.List"
 request.setCharacterEncoding("UTF-8");
 LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
-TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
-CommentDTO commentDTO = (CommentDTO)session.getAttribute("commentDTO");
-RequestDTO requestDTO = (RequestDTO)session.getAttribute("requestDTO");
-List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
-List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
-List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
-List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestList");
+UserDTO personOthers = (UserDTO)session.getAttribute("personOthersDTO");
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!--
-<meta http-equiv="refresh" content="1; URL=/komimiSample/Main">
--->
+
 <title>PersonOthers</title>
 </head>
 <body>
+<a href="/komimi-chan-t-1/PersonMyself">マイページ</a><br>
+<a href="/komimi-chan-t-1/Main">戻る</a>
 おすすめユーザー<br>
 <br>
-<form action="/komimi-chan-t-1/MainProcessSwitch" method="post">
-<input  type="submit" value="main" name="select">main<br>
-<input  type="submit" value="personMyself" name="select">personMyself<br>
-<input  type="submit" value="personOthers" name="select">personOthers<br>
-<input  type="submit" value="management" name="select">management<br>
-<input  type="submit" value="signup" name="select">signup<br>
-<input  type="submit" value="talentInfo" name="select">talentInfo<br>
-<input  type="submit" value="reset" name="select">reset
+
+<h1>ユーザー</h1>
+<img src="<%= request.getContextPath()+"/img_user_logo/" + personOthers.getInfo03() %>" width="150"><br>
+名前：<%= personOthers.getUserName() %><br>
+<br>
+
+タレントリスト
+<%
+TalentDTO talent=null;
+int counter=0;
+%>
+<%for(TalentDTO talentDTO:personOthers.getUserFavoriteTalentList()){ %>
+<form action="/komimi-chan-t-1/TalentInfo" method="post">
+<% if(talentDTO!=null){ %>
+	<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+	<%= "コンビ名:"+talentDTO.getTalentGroupName() %><br>
+	<%= "favorite:"+talentDTO.getTalentName() %><br>
+	<%= "comment:"+userDTO.getCommentDTOList().get(counter).getComment() %><br>
+	<% counter++; %>
+<input  type="submit" value=<%= talentDTO.getTalentId() %> name="talentDTO"><br>
 </form>
 <br>
-<%
-if(loginDTO==null||loginDTO.getId()==""){
-%>
-何も表示されません。
-<%}else{ %>
+<% } %>
+<% } %>
+
 <br>
-	<h1>ログイン</h1>
-	<%= loginDTO %><br>
-	<br>
-
-	<h1>ユーザー</h1>
-	<%= userDTO %><br>
-	<br>
-
-	<h1>タレント</h1>
-	<%= talentDTO %><br>
-	<br>
-
-	<h1>コメント</h1>
-	<%= commentDTO %><br>
-	<br>
-
-	<h1>リクエスト</h1>
-	<%= requestDTO %><br>
-	<br>
-
-	<!--タレントリスト表示 -->
-	<h1>タレントリスト</h1>
-	<%for(TalentDTO talent:talentList){ %>
-	<%= talent %><br>
-	<%} %>
-	<br>
-
-	<!--ユーザーリスト表示 -->
-	<h1>ユーザーリスト</h1>
-	<%for(UserDTO user:userList){ %>
-	<%= user %><br>
-	<%} %>
-	<br>
-
-	<!--コメントリスト表示 -->
-	<h1>コメントリスト</h1>
-	<%for(CommentDTO comment:commentList){ %>
-	<%= comment %><br>
-	<%} %>
-	<br>
-
-	<!--リクエストリスト表示 -->
-	<h1>リクエストリスト</h1>
-	<%for(RequestDTO requestUnit:requestList){ %>
-	<%= requestUnit %><br>
-	<%} %>
-	<br>
-<%} %>
 
 </body>
 </html>

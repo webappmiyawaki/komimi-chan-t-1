@@ -17,5 +17,7 @@ import lombok.ToString;
 @Builder
 public class LoginDTO implements Serializable {
 	private String id;
+	private String name;
 	private String password;
+	private UserType userType;
 }

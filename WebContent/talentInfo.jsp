@@ -7,7 +7,6 @@ import="dto.LoginDTO"
 import="dto.TalentDTO"
 import="dto.UserDTO"
 import="dto.CommentDTO"
-import="dto.RequestDTO"
 import="java.util.List"
 %>
 
@@ -18,11 +17,11 @@ LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 TalentDTO talentDTO = (TalentDTO)session.getAttribute("talentDTO");
 CommentDTO commentDTO = (CommentDTO)session.getAttribute("commentDTO");
-RequestDTO requestDTO = (RequestDTO)session.getAttribute("requestDTO");
-List<TalentDTO> talentList = (List<TalentDTO>)session.getAttribute("talentList");
 List<UserDTO> userList = (List<UserDTO>)session.getAttribute("userList");
+List<UserDTO> personOthersList = (List<UserDTO>)session.getAttribute("personOthersList");
 List<CommentDTO> commentList = (List<CommentDTO>)session.getAttribute("commentList");
-List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestList");
+List<CommentDTO> commentTalentList = (List<CommentDTO>)session.getAttribute("commentTalentList");
+
 %>
 
 <!DOCTYPE html>
@@ -35,71 +34,57 @@ List<RequestDTO> requestList = (List<RequestDTO>)session.getAttribute("requestLi
 <title>Talent Infomation</title>
 </head>
 <body>
+<a href="/komimi-chan-t-1/Main">メイン</a><br>
+<a href="/komimi-chan-t-1/PersonMyself">マイページ</a><br>
 有名人情報<br>
 <br>
-<form action="/komimi-chan-t-1/MainProcessSwitch" method="post">
-<input  type="submit" value="main" name="select">main<br>
-<input  type="submit" value="personMyself" name="select">personMyself<br>
-<input  type="submit" value="personOthers" name="select">personOthers<br>
-<input  type="submit" value="management" name="select">management<br>
-<input  type="submit" value="signup" name="select">signup<br>
-<input  type="submit" value="talentInfo" name="select">talentInfo<br>
-<input  type="submit" value="reset" name="select">reset
+<form action="/komimi-chan-t-1/PurchasingPageForEach" method="post">
+<input  type="submit" value="purchasingPageForEach" name="select">芸能人個別購買ページ<br>
 </form>
 <br>
-<%
-if(loginDTO==null||loginDTO.getId()==""){
-%>
-何も表示されません。
-<%}else{ %>
-<br>
-	<h1>ログイン</h1>
-	<%= loginDTO %><br>
-	<br>
-
-	<h1>ユーザー</h1>
-	<%= userDTO %><br>
-	<br>
 
 	<h1>タレント</h1>
-	<%= talentDTO %><br>
+	<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+	名前：<%= talentDTO.getTalentName() %><br>
+	コンビ名：<%= talentDTO.getTalentGroupName() %><br>
+	出身地：<%= talentDTO.getTalentBirthPlace() %><br>
+	血液型：<%= talentDTO.getTalentBloodType() %><br>
+	お気に入り数：<%= talentDTO.getTalentFavoriteCount() %><br>
+	Twitter：<%= talentDTO.getTwitterAddress() %><br>
+	Youtube：<%= talentDTO.getYoutubeAddress() %><br>
 	<br>
+<br>
+<br>
+twitter<br>
+<a class="twitter-timeline"
+data-width="560"
+data-height="440"
+href="https://twitter.com/<%= talentDTO.getTwitterAddress() %>?ref_src=twsrc%5Etfw">
+</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<br>
+<br>
+<br>
+youtube<br>
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/<%= talentDTO.getYoutubeAddress() %>"
+title="YouTube video player"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
-	<h1>コメント</h1>
-	<%= commentDTO %><br>
-	<br>
-
-	<h1>リクエスト</h1>
-	<%= requestDTO %><br>
-	<br>
-
-	<!--タレントリスト表示 -->
-	<h1>タレントリスト</h1>
-	<%for(TalentDTO talent:talentList){ %>
-	<%= talent %><br>
-	<%} %>
-	<br>
-
-	<!--ユーザーリスト表示 -->
-	<h1>ユーザーリスト</h1>
-	<%for(UserDTO user:userList){ %>
-	<%= user %><br>
-	<%} %>
-	<br>
+	Tiktok:<%= talentDTO.getTiktokAddress() %><br>
 
 	<!--コメントリスト表示 -->
 	<h1>コメントリスト</h1>
-	<%for(CommentDTO comment:commentList){ %>
-	<%= comment %><br>
-	<%} %>
+	<%int counter=0; %>
+	<%for(CommentDTO comment:commentTalentList){ %>
+	<p>
+	<%="コメント "+ counter+"." %><br>
+	<%= comment.getComment() %></p>
+	<% counter++;%>
+	<% } %>
 	<br>
 
-	<!--リクエストリスト表示 -->
-	<h1>リクエストリスト</h1>
-	<%for(RequestDTO requestUnit:requestList){ %>
-	<%= requestUnit %><br>
-	<%} %>
-	<br>
-<%} %>
 </body>
 </html>

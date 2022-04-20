@@ -1,28 +1,54 @@
 package dto;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+//@ToString
 @Builder
 public class TalentDTO implements Serializable{
-	String name;
-	String info01;
-	String info02;
-	String info03;
-	String info04;
-	String info05;
-	String info06;
-	String info07;
-	String info08;
+	private String talentId;
+	private String talentName;
+	private String talentImgAddress;
+	private String talentBirthPlace;
+	private Date talentBirthday;
+	private String talentBloodType;
+	private String talentGroupName;
+	private String talentInfo08;
+	private String twitterAddress;
+	private String youtubeAddress;
+	private String tiktokAddress;
+	private int talentFavoriteCount;
+	private String talentLiveInf01;
+	private String talentLiveInf02;
+	private String talentLiveInf03;
+	private String talentLiveInf04;
+	private String talentLiveInf05;
+
+	//****なくなる***
+	private ProductDTO product01;
+	private ProductDTO product02;
+	private ProductDTO product03;
+	private ProductDTO product04;
+	private ProductDTO product05;
+	//*******
+
+	//product01-05→list化
+	private List<ProductDTO> productList;
+
+
+	public String ToString() {
+		return String.format("img:%s group:%s name:%s",this.talentImgAddress,this.talentGroupName,this.talentName);
+	}
 }
+
