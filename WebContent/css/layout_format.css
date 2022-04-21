@@ -1,0 +1,561 @@
+@charset "utf-8";
+/* レイアウトCSS */
+
+body{
+    background:#000;
+    font-family: 'Noto Sans JP', sans-serif;
+	color: #eee;
+	font-size:1rem;
+	line-height:1.85;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%; 
+	word-wrap: break-word;
+}
+
+*{box-sizing: border-box;}
+
+ul{
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+
+a{
+	color: #eee;
+	text-decoration: none;
+    outline: none;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+/* loading */
+
+.loader,
+.loader:before,
+.loader:after {
+  background: #ffffff;
+  animation: load1 1s infinite ease-in-out;
+  width: 0.5em;
+  height: 1em;
+}
+.loader {
+  color: #ffffff;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  font-size: 11px;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 1.5em;
+}
+
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 1em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 2em;
+  }
+}
+
+
+/* area */
+
+#container{
+    overflow-x: hidden;
+    /*以下、IE11用*/
+    z-index: 1;
+    position: relative;
+	height:3000px;
+}
+
+/* font-family */
+
+h1,
+h2,
+#service .service-area section h3,
+#service .service-area section h4,
+#g-nav,
+#footer-link,
+.scrolldown1 span,
+#vidual-area dt,
+.footer-logo{
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.2em;
+}
+
+/* heading */
+
+#service h2{
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+}
+#service h3{/* ★★★ */
+    font-size: 2rem;
+    margin: 0 0 50px 0;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* header */
+
+#header h1 a{
+    color: #ddd;
+}
+
+#header h1{
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    padding: 0 0 0 265px; 
+    line-height: 1;
+    white-space: nowrap;
+}
+
+@media screen and (max-width:960px){
+  #header h1{
+    position: absolute;
+      top:22px;
+      left:265px;
+      padding: 0;
+    }
+}
+
+.scrolldown1 span {
+    transform: rotate(-90deg);
+    text-transform:uppercase;
+    left: -23px;
+    top: -31px;
+}
+
+/* vidualarea */
+/*#logo{
+	position: relative;
+	width: 1366px;
+	left: 0px;
+	}*/
+#titleLogoLp{
+	position: relative;
+	width:180px;
+    height: 176px;
+	top:0px;
+    margin-left: 40px;
+	margin-right: 0px;
+	}
+#kmmLogoLp{
+	position: absolute;
+	width: 90px;
+    height: 420px;
+	top: 390px;
+    margin-left: 84px;
+	z-index: -1;
+	}
+#conceptKmm{
+	position: absolute;
+	width: 76px;
+    height: 150px;
+	top: 455px;
+    margin-left: 144px;
+	z-index: -1;
+	}
+	
+#titleLogoLpBg{
+	display: block;
+    content: "";
+    position:absolute;
+	z-index: -1;
+    width:180px;
+    height: 352px;
+	top:0px;
+    margin-left: 40px;
+	margin-right: 0px;
+    background-color: #960021;/*伸びる背景色の設定*/
+}
+
+#vidual-area{
+    position: relative;
+    /*height: 100vh;*/
+	height: 100vh;
+}
+
+body.appear #vidual-area::after{
+    content:'';
+    background:#960021;
+    width:0;
+    height: 12%;
+    position: absolute;
+    bottom:0;
+    right:0;
+    z-index: -1;
+	animation-name:vidualbgRLextendAnime;
+    animation-duration:.2s;
+	animation-fill-mode:forwards;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+}
+
+@keyframes vidualbgRLextendAnime{
+	0% {
+		width:0;
+	}
+	100% {
+		width:40%;
+	}
+}
+
+
+#vidual-area #slider-area{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 85%;
+    z-index: -1;/*最背面へ*/
+}
+
+#vidual-area h2{
+    line-height: 1.5;
+    text-transform: uppercase;
+    font-size: 3vw;
+    position: absolute;
+    top:36%;
+    left:5%;
+}
+
+#vidual-area dl{
+    position: absolute;
+    left:2%;
+    bottom:2%;
+}
+
+#vidual-area dl{
+    color:#aaa;
+}
+
+#vidual-area dt,
+#vidual-area dd,
+#vidual-area ul,
+#vidual-area ul li{
+    display: inline-block;
+}
+
+#vidual-area dt{
+    text-transform: uppercase;
+}
+
+#vidual-area ul li{
+    margin:0 10px;
+}
+
+#vidual-area ul img{
+    width:20px;
+}
+
+@media screen and (max-width:960px) {
+#vidual-area{
+    height: 90vh;
+}
+#vidual-area #slider-area{
+    width:100%;
+    /*height: 90vh;*/
+	height: 0px;
+}
+#vidual-area h2{
+    font-size:2.1rem;
+}
+#vidual-area dl{
+    left:20px;
+    bottom:16px;
+}
+#vidual-area ul li{
+    margin:0 2px;
+}
+    
+}
+
+@media screen and (max-width:450px) {
+#vidual-area h2{
+    font-size:7vw;
+    top: inherit;
+    bottom: 13%;
+}
+
+}
+
+#main-area{
+    position:absolute;
+	/*z-index: 998;
+    /*width:180px;*/
+    /*height: 352px;*/
+	top:-21px;/*★*/
+    margin-left: 265px;
+	margin-right: 0px;
+}
+/* service */
+#service h2{
+	/*padding: 10% 0 0 15%;*/
+    padding: 180px 0 0 0px;
+}
+#service h4{
+	/*padding: 10% 0 0 15%;*/
+    padding: 180px 0 0 0px;
+}
+#service{
+    padding: 10% 0 0 0;
+	/*padding: 10% 0 10% 15%;*/
+}
+
+@media screen and (max-width:768px) {
+#service{
+    padding: 30% 0 0 0px;
+	/*padding: 30% 0 10% 30px;*/
+}
+#service h2{
+	padding: 30% 0 10% 30px;
+}
+#service h3{
+	padding: 30% 0 10% 30px;
+}
+}
+
+@media screen and (max-width:500px) {
+#service .service-lead{
+	padding: 0 0 0 0;
+	/*padding: 0 10% 0 0;*/
+    }
+#service .service-lead br{
+    display: none;
+	}
+#service h2{
+	padding: 0 10% 0 0;
+	}
+}
+
+#service .service-area{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding:0 0 0 0;
+	/*padding:10% 0 0 10%;*/
+    position: relative;
+}
+
+#service .service-area::after{
+    opacity: 0;
+}
+
+#service .service-area.startwd::after{
+     content:'';
+    position: absolute;
+    top:10%;
+    right:0;
+    width:80%;
+    height: 60vh;
+    background:#232323;
+    /*z-index: -1;*/
+	animation-name:sevicebgRLextendAnime;
+    animation-duration:.9s;
+	animation-fill-mode:forwards;
+    animation-timing-function: ease-in-out;
+}
+
+
+
+@keyframes sevicebgRLextendAnime{
+	0% {
+        opacity: 0;
+		width:0;
+	}
+	100% {
+        opacity: 1;
+		width:80%;
+	}
+}
+
+#service .service-area section{
+     width:30%;   
+}
+
+@media screen and (max-width:570px) {
+#service .service-area section{
+     width:100%;
+    margin: 0 0 100px 0;
+    padding: 0 10% 0 0;
+}
+ 
+}
+
+#service .service-area section h4{
+    font-size:1.5rem;
+    margin: 0 0 30px 0;
+}
+
+#service .service-area section p{
+    margin: 0 0 30px 0;
+}
+
+#service .service-img-wrapper{
+    position:relative;
+    overflow: hidden;
+    width:30%;
+    height: 60vh;
+}
+
+#service .service-img{
+    position:relative;
+    margin: 0px 0px 0px 0px;
+    height: 60vh;
+    background:url("../img_k/talent_sample.jpg") no-repeat;
+	/*background:url("../img_k/talent_sample.jpg") no-repeat center;*/
+    background-size: cover;
+	z-index: 1;
+}
+
+@media screen and (max-width:570px) {
+#service .service-img-wrapper,
+#service .service-img{
+    width:100%;
+    height: 40vh;
+    background-position: left;
+    }
+    #service .service-img-wrapper{
+        margin:0 0 50px 0;
+    }
+}
+
+/* news */
+
+.news-img-wrapper{
+    position:relative;
+    z-index: 1;
+    overflow: hidden;
+    width:90%;
+    height: 60vh;
+}
+
+.news-img{
+    height: 60vh;
+    background:url("../img/02.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.news-img::after{
+     content:'';
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:70%;
+    height: 10vh;
+    background:#000;
+    z-index:2;
+}
+
+#news{
+    padding: 0 0 5% 15%;
+}
+
+#news .area li{
+    padding: 20px 0;
+}
+
+#news .area time{
+    display: block;
+    color: #aaa;
+}
+
+#news .tab{
+    position: relative;
+    top:1px;
+}
+
+#news .tab-choice-area{
+    border-top:1px solid #aaa;
+    border-left:1px solid #aaa;
+}
+
+@media only screen and (max-width: 1110px) {
+    .tab-area{
+        width:100%;
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+#news {
+    padding: 0 0 5% 30px;
+}
+}
+
+/* gallery */
+
+
+/* contact */
+
+
+/* footer */
+
+#footer{
+    /*display: flex;
+    /*justify-content: space-between;
+    flex-wrap: wrap;*/
+    align-items: center;
+    opacity: 0.8;
+    padding:5%;
+	
+}
+
+#footer .footer-link{
+    width:65%;
+}
+
+#footer small{
+    padding: 100px 100px 30px 0;
+    display: block;
+	width:100%;
+    text-align: right;
+    color: #aaa;
+	position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+	white-space: nowrap;
+}
+
+
+@media screen and (max-width:830px) {
+    #footer{
+        justify-content: center;
+        padding:5% 0;
+    }
+
+    
+    #footer .footer-link{
+        width:auto;
+    }
+    
+    #footer small {
+        padding:10% 0;
+        text-align:right;
+    } 
+}
+
+@media screen and (max-width:400px) {
+
+}
