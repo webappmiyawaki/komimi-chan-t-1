@@ -31,7 +31,7 @@ List<ProductDTO> productAllList = (List<ProductDTO>)session.getAttribute("produc
 
 購入履歴<br><br>
 <%for(ProductDTO myProductDTO:myUserDTO.getProductDTOList()){ %>
-		<%="履歴No." + counter + "  商品名："+myProductDTO.getProductName()+"  価格："+myProductDTO.getProductPrice() %>
+		<%="履歴No." + counter + "  商品名："+myProductDTO.getProductName()+"  価格："+myProductDTO.getProductPrice() %><br>
 <%} %>
 <br>
 </body>

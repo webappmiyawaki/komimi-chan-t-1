@@ -153,4 +153,21 @@ public class ProcessInsert implements ProcessInsertInterface {
 		return true;
 	}
 
+	public boolean insertHistory(String userId,String productId) {
+		// TODO 自動生成されたメソッド・スタブ
+		DBConnector dbc = new DBConnector();
+		String sql = "INSERT INTO user_purchase_history(user_id, product_id, registration_date) VALUES (?, ?, ?)";
+		try (Connection conn = dbc.getConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql)) {
+			pstm.setString(1, userId);
+			pstm.setString(2, productId);
+			pstm.setDate(3, null);
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 }

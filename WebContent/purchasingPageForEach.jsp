@@ -47,7 +47,7 @@ List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
 
 <a href="/komimi-chan-t-1/Main">メイン</a><br>
 <form action="/komimi-chan-t-1/PaymentPage" method="post">
-	<input  type="submit" value="SendMain" name="select">SendMain<br>
+	<input  type="submit" value="SendMain" name="select">決済ページへ<br>
 </form>
 
 <% if(cart!=null){ %>

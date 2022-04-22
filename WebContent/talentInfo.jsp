@@ -44,7 +44,7 @@ List<CommentDTO> commentTalentList = (List<CommentDTO>)session.getAttribute("com
 <br>
 
 	<h1>タレント</h1>
-	<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="150"><br>
+	<img src="<%= request.getContextPath()+"/img_talent/" + talentDTO.getTalentImgAddress() %>" width="350"><br>
 	名前：<%= talentDTO.getTalentName() %><br>
 	コンビ名：<%= talentDTO.getTalentGroupName() %><br>
 	出身地：<%= talentDTO.getTalentBirthPlace() %><br>

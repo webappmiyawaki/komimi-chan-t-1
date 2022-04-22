@@ -66,6 +66,14 @@ public class Login extends HttpServlet {
 			request.getRequestDispatcher(path).forward(request, response);
 		}
 
+		List<TalentDTO> loginTalentList = new ArrayList<>();
+		loginTalentList=pf.findAllTalentDTOList();
+		StringBuilder sb = new StringBuilder("");
+		for(TalentDTO t:loginTalentList) {
+			sb.append(t.getTalentName()+" ");
+		}
+		session.setAttribute("loginTalentList", sb);
+
 		Map<String,TalentDTO>talentMap=new HashMap<>();
 		String key="";
 		for(TalentDTO talentDTO:talentList) {

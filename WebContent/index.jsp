@@ -5,7 +5,7 @@
     <%	session.setAttribute("userList", null); %>
     <%	session.setAttribute("talentList", null); %>
     <%	session.setAttribute("commentList", null); %>
-
+	<%	session.invalidate(); %>
 <!DOCTYPE html>
 <html>
 <head>

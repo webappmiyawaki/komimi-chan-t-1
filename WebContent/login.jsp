@@ -19,15 +19,23 @@ LoginDTO loginDTO = (LoginDTO)session.getAttribute("login");
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP%7COswald&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
-<body bgColor="black">
-<div>
-ログイン
-<form action="/komimi-chan-t-1/Login" method="post">
-name  :<input  type="text" value="" name="userName"><br>
-pass:<input  type="password" value="" name="userPass"><br>
-<input  type="submit" value="確定" name="select">
-</form>
+<body>
+登録してない方は＞＞<a href="/komimi-chan-t-1/SignupForUserInfo">新規登録</a><br>
+
+<div class="container">
+  <div class="child">
+  ログイン
+	<form action="/komimi-chan-t-1/Login" method="post">
+	name  :<input  type="text" value="" name="userName"><br>
+	pass:<input  type="password" value="" name="userPass"><br>
+	<input  type="submit" value="確定" name="select">
+	</form>
+  </div>
+
+<%--ワードクラウド --%>
+<canvas id="cloud"></canvas>
 </div>
+
 <br>
 <%
 if(loginDTO!=null){
@@ -37,7 +45,9 @@ if(loginDTO!=null){
 <%	}
 }
 %>
-登録してない方は＞＞<a href="/komimi-chan-t-1/SignupForUserInfo">新規登録</a><br>
+
+
+<!--
 
 <form action="/komimi-chan-t-1/ManagementForTalent" method="post">
 <input  type="submit" value="managementForTalent" name="select">タレント用管理画面<br>
@@ -45,9 +55,8 @@ if(loginDTO!=null){
 <form action="/komimi-chan-t-1/ManagementForOperation" method="post">
 <input  type="submit" value="managementForOperation" name="select">運営用管理画面<br>
 </form>
+ -->
 
-<%--ワードクラウド --%>
-<canvas id="cloud"></canvas>
 
 
 </body>
@@ -116,11 +125,11 @@ function wordCloud(selector) {
         //The outside world will need to call this function, so make it part
         // of the wordCloud return value.
         update: function(words) {
-            d3.layout.cloud().size([500, 500])
+            d3.layout.cloud().size([1500, 500])
                 .words(words)
                 .padding(5)
                 .rotate(function() { return ~~(Math.random() * 2) * 90; })
-                .font("Impact")
+                .font("Meiryo UI")
                 .fontSize(function(d) { return d.size; })
                 .on("end", draw)
                 .start();
@@ -130,6 +139,14 @@ function wordCloud(selector) {
 }
 
 //Some sample data - http://en.wikiquote.org/wiki/Opening_lines
+
+<%
+StringBuilder sb = (StringBuilder)session.getAttribute("loginTalentList");
+%>
+
+var words =[<%=sb%>]
+
+<!--
 var words = [
     "片倉ブリザード 小林圭輔 友保隼平 あかさたなはまや 高井佳佑 フェニックス 雨野宮将明 太郎 井下大活躍 好井まさお ありがとうぁみ 細野哲平",
     "おしみんまる えいじ ひるちゃん 八木崇 佐々木崇博 福田恵梧 伊藤智博 下田真生 九条ジョー 篠宮暁 高松新一 栗谷 すがやなおひろ 片倉ブリザード",
@@ -140,7 +157,7 @@ var words = [
     "シークエンスはやとも りゅうたろう 金城めくるくん Yes!アキト どんぐりたけし サツマカワRPG ノブヨシ日本代表 ",
     "飛び出せっ！安藤っ！ コブラ 中澤本鮪 林万介 ニュー岡部 遠山大輔 五明拓弥 大 坂本純一 福井俊太郎 ひろゆき 幸 彩 宮地謙典",
     "森本英樹 大川知英 藤本秀星 Mr.コブシ 鳩 すがちゃん最高No.1 信子 金子きょんちぃ 本間キッド 中嶋亨 ロングサイズ伊藤 吉住" ]
-
+-->
 //Prepare one of the sample sentences by removing punctuation,
 // creating an array of words and computing a random size attribute.
 function getWords(i) {
@@ -148,7 +165,7 @@ function getWords(i) {
             .replace(/[!\.,:;\?]/g, '')
             .split(' ')
             .map(function(d) {
-                return {text: d, size: 10 + Math.random() * 60};
+                return {text: d, size: 10 + Math.random() * 100};
             })
 }
 
@@ -159,7 +176,7 @@ function showNewWords(vis, i) {
     i = i || 0;
 
     vis.update(getWords(i ++ % words.length))
-    setTimeout(function() { showNewWords(vis, i + 1)}, 2000)
+    setTimeout(function() { showNewWords(vis, i + 1)}, 4000)
 }
 
 //Create a new instance of the word cloud visualisation.
